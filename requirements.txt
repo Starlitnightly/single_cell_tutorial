@@ -36,3 +36,4 @@ mkdocstrings-python
 python-dotplot
 metatime
 tensorboard
+mkdocs-bibtex

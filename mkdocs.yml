@@ -1,6 +1,7 @@
-site_name: Bioinformatic Tutorial (Daxing Research)
+site_name: single_cell_tutorial Readthedocs
 repo_url: https://github.com/Starlitnightly/single_cell_tutorial
-edit_uri: edit/main/docs/
+site_author: "Zehua Zeng"
+copyright: git"Copyright &copy; 2019-2023, 112 Lab, USTB"
 
 nav:
 - 写在前面: index.md
