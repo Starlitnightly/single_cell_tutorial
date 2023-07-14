@@ -1,0 +1,1667 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../tmt_2/">
+      
+      
+        <link rel="next" href="../../MultiOMIC/book-1/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
+    
+    
+      
+        <title>5-3. TMT蛋白组学下游分析 - Bioinformatic Tutorial (Daxing Research)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7bf56d0a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tmt" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-header__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bioinformatic Tutorial (Daxing Research)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5-3. TMT蛋白组学下游分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-nav__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Bioinformatic Tutorial (Daxing Research)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        写在前面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          基础环境配置
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          基础环境配置
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_1/" class="md-nav__link">
+        配置1. Python环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_2/" class="md-nav__link">
+        配置2. Linux环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_3/" class="md-nav__link">
+        配置3. R语言环境
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          RNA-seq上游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq上游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_1/" class="md-nav__link">
+        1-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_2/" class="md-nav__link">
+        1-2. 上游分析全教程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          RNA-seq下游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq下游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_1/" class="md-nav__link">
+        2-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_2/" class="md-nav__link">
+        2-2. 差异表达基因(DEG)分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_3/" class="md-nav__link">
+        2-3. 通路富集分析(GSEA)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          单细胞样本对齐
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          单细胞样本对齐
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_1/" class="md-nav__link">
+        3-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_2/" class="md-nav__link">
+        3-2. 数据预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_3/" class="md-nav__link">
+        3-3. 模型准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_4/" class="md-nav__link">
+        3-4. 模型训练
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_5/" class="md-nav__link">
+        3-5. 对齐细胞
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MOFA单细胞多组学因子分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MOFA单细胞多组学因子分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_1/" class="md-nav__link">
+        4-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_2/" class="md-nav__link">
+        4-2. 单细胞样本对齐
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_3/" class="md-nav__link">
+        4-3. scRNA-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_4/" class="md-nav__link">
+        4-4. scATAC-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_5/" class="md-nav__link">
+        4-5. MOFA模型构建
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_6/" class="md-nav__link">
+        4-6. MOFA下游分析-R语言环节
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_7/" class="md-nav__link">
+        4-7. MOFA下游分析-Python环节
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          TMT蛋白组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          TMT蛋白组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tmt_1/" class="md-nav__link">
+        5-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tmt_2/" class="md-nav__link">
+        5-2. TMT蛋白组学上游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          5-3. TMT蛋白组学下游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        5-3. TMT蛋白组学下游分析
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 安装依赖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-meta" class="md-nav__link">
+    2. meta文件准备
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-proteus" class="md-nav__link">
+    3. Proteus分析
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Proteus分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 加载依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 导入数据
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 导入数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321" class="md-nav__link">
+    3.2.1 列名设置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-evidencemeta" class="md-nav__link">
+    3.2.2 导入evidence和meta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-peptide" class="md-nav__link">
+    3.2.3 创建peptide数据集
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 蛋白结果数据
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 蛋白结果数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331" class="md-nav__link">
+    3.3.1 创建蛋白结果数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-normalization" class="md-nav__link">
+    3.3.2 Normalization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-clustering" class="md-nav__link">
+    3.3.3 Clustering
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    3.4 差异表达分析
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          多组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          多组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-1/" class="md-nav__link">
+        6-1. 数据准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-2/" class="md-nav__link">
+        6-2. GLUE多组学整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-3/" class="md-nav__link">
+        6-3. 细胞亚群分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-4/" class="md-nav__link">
+        6-4. 差异表达分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-5/" class="md-nav__link">
+        6-5. 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-6/" class="md-nav__link">
+        6-6. 动态调控分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-7/" class="md-nav__link">
+        6-7. 转录因子网络
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          Python可视化
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Python可视化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_1/" class="md-nav__link">
+        1-1. 火山图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_2/" class="md-nav__link">
+        1-2. 箱线图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_3/" class="md-nav__link">
+        1-3. 热图(聚类)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          视网膜母细胞瘤分析教程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          视网膜母细胞瘤分析教程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/rb_tutorial/" class="md-nav__link">
+        Base
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_1_preprocess/" class="md-nav__link">
+        教程1: 单细胞上游结果预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_2_filtered_qc/" class="md-nav__link">
+        教程2: 质量控制与过滤
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_3_glue/" class="md-nav__link">
+        教程3: scRNA-seq与scATAC-seq整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_4_scbasset/" class="md-nav__link">
+        教程4: Motif活性分数计算
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_5_analysis1/" class="md-nav__link">
+        教程5: 综合分析1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_6_analysis2/" class="md-nav__link">
+        教程6: 综合分析1-Chromatin activity和Motif score评估
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_7_STER_cell/" class="md-nav__link">
+        教程7: STER cell下游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_8_kineic_photo/" class="md-nav__link">
+        教程8: 转录动力学分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_9_cellphonedb/" class="md-nav__link">
+        教程9: 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 安装依赖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-meta" class="md-nav__link">
+    2. meta文件准备
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-proteus" class="md-nav__link">
+    3. Proteus分析
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Proteus分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 加载依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 导入数据
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 导入数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321" class="md-nav__link">
+    3.2.1 列名设置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-evidencemeta" class="md-nav__link">
+    3.2.2 导入evidence和meta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-peptide" class="md-nav__link">
+    3.2.3 创建peptide数据集
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 蛋白结果数据
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 蛋白结果数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331" class="md-nav__link">
+    3.3.1 创建蛋白结果数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-normalization" class="md-nav__link">
+    3.3.2 Normalization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-clustering" class="md-nav__link">
+    3.3.3 Clustering
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    3.4 差异表达分析
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+  
+  
+
+
+<h1 id="tmt">TMT蛋白组学：下游分析</h1>
+<p>在前面的分析，我们已经得到了蛋白组学的搜库结果，那么我们怎么才能将其分析出具有生物学意义的东西呢？</p>
+<p>在结果的路径下，有一个Combined文件夹，里面的txt文件夹存放了我们的搜库结果，其中的evidence.txt跟proteinGroup.txt为最重要的两个，在这里，我们使用R包proteusTMT进行下游分析。</p>
+<h2 id="1">1. 安装依赖</h2>
+<p>Proteus can be installed directly from GitHub. First, you need to install BioConductor and limma:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>install.packages(&quot;BiocManager&quot;)
+<span class="linenos" data-linenos="2 "></span>BiocManager::install()
+<span class="linenos" data-linenos="3 "></span>BiocManager::install(&quot;limma&quot;)
+</code></pre></div>
+<p>You also need devtools:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>install.packages(&quot;devtools&quot;)
+</code></pre></div>
+<p>In order to run examples or vignette code, additional packages with example data need to be installed:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>devtools::install_github(&quot;bartongroup/proteusLabelFree&quot;)
+<span class="linenos" data-linenos="2 "></span>devtools::install_github(&quot;bartongroup/proteusTMT&quot;)
+<span class="linenos" data-linenos="3 "></span>devtools::install_github(&quot;bartongroup/proteusSILAC&quot;)
+</code></pre></div>
+<p>Finally, you can install proteus:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>devtools::install_github(&quot;bartongroup/Proteus&quot;, build_opts= c(&quot;--no-resave-data&quot;, &quot;--no-manual&quot;), build_vignettes=TRUE)
+</code></pre></div>
+<p>Note: use <code>build_vignettes = FALSE</code> if you run into problems with vignettes installation.</p>
+<h2 id="2-meta">2. meta文件准备</h2>
+<p>对于Proteus，其中最为重要的是我们需要对TMT6plex的每一个标记进行标注清楚，在这里，我们准备一个模板作为参考</p>
+<ul>
+<li>experiment：这个是你在上游分析搜库的时候，对每一个raw设置的experiment情况，比如Ctrl1.raw文件里面，包含了6个TMT标记，其中每一个标记代表不同的样本，比如Ctrl1包括了WT1-1，WT2-1，WT3-1，SHED1-1，SHED2-1，SHED3-1，WT1-1指的是野生型的第一个重复</li>
+<li>measure：TMT6plex将返回6个Reporter intensity，每一个对应上述的一个sample</li>
+<li>sample：表示TMT6plex里都有哪六个样本</li>
+<li>condition：样本分组情况</li>
+<li>replicate：重复次数</li>
+</ul>
+<p><img alt="image-20220126021021714" src="../tmt_3.assets/image-20220126021021714.png" /></p>
+<h2 id="3-proteus">3. Proteus分析</h2>
+<h3 id="31">3.1 加载依赖</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>library(proteusTMT)
+<span class="linenos" data-linenos="2 "></span>library(proteus)
+</code></pre></div>
+<h3 id="32">3.2 导入数据</h3>
+<h4 id="321">3.2.1 列名设置</h4>
+<p>The default <code>measure.cols</code> object is designed for label-free data. For TMT data we need to specify all reporter intensity columns. In out example we have 10 reporter columns, numbered from 1 to 6:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>measCols &lt;- paste0(&quot;Reporter intensity &quot;, 1:6)
+<span class="linenos" data-linenos="2 "></span>names(measCols) &lt;- paste0(&quot;reporter_&quot;, 1:6)
+</code></pre></div>
+<p>意味着我们将Reporter intensity 1重命名为reporter_1</p>
+<h4 id="322-evidencemeta">3.2.2 导入evidence和meta</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>evi &lt;- readEvidenceFile(&#39;txt/evidence.txt&#39;, measure.cols=measCols)
+<span class="linenos" data-linenos="2 "></span>meta &lt;- read.delim(&#39;meta.txt&#39;, header=TRUE, sep=&quot;\t&quot;)
+</code></pre></div>
+<h4 id="323-peptide">3.2.3 创建peptide数据集</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>pepdat &lt;- makePeptideTable(evi, meta, measure.cols=measCols, aggregate.fun=aggregateMedian, experiment.type=&quot;TMT&quot;)
+<span class="linenos" data-linenos="2 "></span>plotCount(pepdat)
+</code></pre></div>
+<p><img alt="image-20220126022018085" src="../tmt_3.assets/image-20220126022018085.png" /></p>
+<h3 id="33">3.3 蛋白结果数据</h3>
+<h4 id="331">3.3.1 创建蛋白结果数据</h4>
+<p>We create protein data using the high-flyer method.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>prodat &lt;- makeProteinTable(pepdat, aggregate.fun=aggregateHifly, hifly=3)
+</code></pre></div>
+<h4 id="332-normalization">3.3.2 Normalization</h4>
+<p>For TMT data we recommend using CONSTANd normalization <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4974351/pdf/zjw2779.pdf">Maes et al. 2016</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>prodat.norm &lt;- normalizeTMT(prodat)
+<span class="linenos" data-linenos="2 "></span>write.csv(prodat.norm[[&quot;tab&quot;]],file=&#39;prodat.csv&#39;)
+</code></pre></div>
+<p>These two figures show reporter intensity distributions before and after normalization.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>plotSampleDistributions(prodat, fill=&quot;replicate&quot;)
+</code></pre></div>
+<p><img alt="image-20220126022234665" src="../tmt_3.assets/image-20220126022234665.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>plotSampleDistributions(prodat.norm, log.scale=FALSE, fill=&quot;replicate&quot;)
+</code></pre></div>
+<p><img alt="image-20220126022304695" src="../tmt_3.assets/image-20220126022304695.png" /></p>
+<h4 id="333-clustering">3.3.3 Clustering</h4>
+<p>We can use the same function <code>plotClustering()</code> to see the dendrogram for the proteins.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>plotClustering(prodat.norm)
+</code></pre></div>
+<p><img alt="image-20220126022354890" src="../tmt_3.assets/image-20220126022354890.png" /></p>
+<h3 id="34">3.4 差异表达分析</h3>
+<p>我们想比较SHED组跟WT组的差异情况，于是</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>res &lt;- limmaDE(prodat.norm, conditions=c(&quot;WT&quot;, &quot;SHED&quot;))
+<span class="linenos" data-linenos="2 "></span>write.csv(res,file=&#39;WT_SHED_result.csv&#39;)
+</code></pre></div>
+<p>得到的csv文件与前面的prodat.csv文件，即可参考RNA-seq的下游分析进行，这里不做过多的阐述</p>
+<p>RNA-seq下游分析教程：https://starlitnightly.github.io/bioinformatic_tutorial/RNASEQ/rnaseq_2.html</p>
+
+
+
+
+
+                
+
+  
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fc8c2696.min.js"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

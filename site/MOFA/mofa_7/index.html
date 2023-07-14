@@ -1,0 +1,2111 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../mofa_6/">
+      
+      
+        <link rel="next" href="../../TMT/tmt_1/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
+    
+    
+      
+        <title>4-7. MOFA下游分析-Python环节 - Bioinformatic Tutorial (Daxing Research)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7bf56d0a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mofa-python" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-header__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bioinformatic Tutorial (Daxing Research)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4-7. MOFA下游分析-Python环节
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-nav__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Bioinformatic Tutorial (Daxing Research)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        写在前面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          基础环境配置
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          基础环境配置
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_1/" class="md-nav__link">
+        配置1. Python环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_2/" class="md-nav__link">
+        配置2. Linux环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_3/" class="md-nav__link">
+        配置3. R语言环境
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          RNA-seq上游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq上游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_1/" class="md-nav__link">
+        1-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_2/" class="md-nav__link">
+        1-2. 上游分析全教程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          RNA-seq下游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq下游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_1/" class="md-nav__link">
+        2-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_2/" class="md-nav__link">
+        2-2. 差异表达基因(DEG)分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_3/" class="md-nav__link">
+        2-3. 通路富集分析(GSEA)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          单细胞样本对齐
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          单细胞样本对齐
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_1/" class="md-nav__link">
+        3-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_2/" class="md-nav__link">
+        3-2. 数据预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_3/" class="md-nav__link">
+        3-3. 模型准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_4/" class="md-nav__link">
+        3-4. 模型训练
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_5/" class="md-nav__link">
+        3-5. 对齐细胞
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MOFA单细胞多组学因子分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MOFA单细胞多组学因子分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mofa_1/" class="md-nav__link">
+        4-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mofa_2/" class="md-nav__link">
+        4-2. 单细胞样本对齐
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mofa_3/" class="md-nav__link">
+        4-3. scRNA-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mofa_4/" class="md-nav__link">
+        4-4. scATAC-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mofa_5/" class="md-nav__link">
+        4-5. MOFA模型构建
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mofa_6/" class="md-nav__link">
+        4-6. MOFA下游分析-R语言环节
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          4-7. MOFA下游分析-Python环节
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        4-7. MOFA下游分析-Python环节
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 数据准备
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 数据准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 导入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 导出权重数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 标准化函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    1.5 获取权重函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    1.6 获取特定因子的基因权重
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17" class="md-nav__link">
+    1.7 可视化特定因子
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-varcor" class="md-nav__link">
+    1.8 Var跟Cor数据导入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-var" class="md-nav__link">
+    1.9 Var可视化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-cor" class="md-nav__link">
+    1.10 Cor可视化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 单细胞环节
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 单细胞环节">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 导入数据
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 导入数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-rna" class="md-nav__link">
+    2.1.1 rna数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-atac" class="md-nav__link">
+    2.1.2 atac数据
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-scrna-seqscatac-seq" class="md-nav__link">
+    2.2 scRNA-seq与scATAC-seq细胞类型比较
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-scrna-seqadctrl" class="md-nav__link">
+    2.3 scRNA-seq的AD与Ctrl组聚类
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 scRNA-seq的AD与Ctrl组聚类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    2.3.1 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-scrna-seqfactor" class="md-nav__link">
+    2.3.2 scRNA-seq的factor设置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233" class="md-nav__link">
+    2.3.3 绘图设置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#234-ad" class="md-nav__link">
+    2.3.4 AD组绘图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#235-ctrl" class="md-nav__link">
+    2.3.5 Ctrl组绘图
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          TMT蛋白组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          TMT蛋白组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_1/" class="md-nav__link">
+        5-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_2/" class="md-nav__link">
+        5-2. TMT蛋白组学上游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_3/" class="md-nav__link">
+        5-3. TMT蛋白组学下游分析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          多组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          多组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-1/" class="md-nav__link">
+        6-1. 数据准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-2/" class="md-nav__link">
+        6-2. GLUE多组学整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-3/" class="md-nav__link">
+        6-3. 细胞亚群分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-4/" class="md-nav__link">
+        6-4. 差异表达分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-5/" class="md-nav__link">
+        6-5. 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-6/" class="md-nav__link">
+        6-6. 动态调控分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-7/" class="md-nav__link">
+        6-7. 转录因子网络
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          Python可视化
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Python可视化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_1/" class="md-nav__link">
+        1-1. 火山图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_2/" class="md-nav__link">
+        1-2. 箱线图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_3/" class="md-nav__link">
+        1-3. 热图(聚类)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          视网膜母细胞瘤分析教程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          视网膜母细胞瘤分析教程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/rb_tutorial/" class="md-nav__link">
+        Base
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_1_preprocess/" class="md-nav__link">
+        教程1: 单细胞上游结果预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_2_filtered_qc/" class="md-nav__link">
+        教程2: 质量控制与过滤
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_3_glue/" class="md-nav__link">
+        教程3: scRNA-seq与scATAC-seq整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_4_scbasset/" class="md-nav__link">
+        教程4: Motif活性分数计算
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_5_analysis1/" class="md-nav__link">
+        教程5: 综合分析1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_6_analysis2/" class="md-nav__link">
+        教程6: 综合分析1-Chromatin activity和Motif score评估
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_7_STER_cell/" class="md-nav__link">
+        教程7: STER cell下游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_8_kineic_photo/" class="md-nav__link">
+        教程8: 转录动力学分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_9_cellphonedb/" class="md-nav__link">
+        教程9: 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 数据准备
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 数据准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 导入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 导出权重数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 标准化函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    1.5 获取权重函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    1.6 获取特定因子的基因权重
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17" class="md-nav__link">
+    1.7 可视化特定因子
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-varcor" class="md-nav__link">
+    1.8 Var跟Cor数据导入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-var" class="md-nav__link">
+    1.9 Var可视化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-cor" class="md-nav__link">
+    1.10 Cor可视化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 单细胞环节
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 单细胞环节">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 导入数据
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 导入数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-rna" class="md-nav__link">
+    2.1.1 rna数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-atac" class="md-nav__link">
+    2.1.2 atac数据
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-scrna-seqscatac-seq" class="md-nav__link">
+    2.2 scRNA-seq与scATAC-seq细胞类型比较
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-scrna-seqadctrl" class="md-nav__link">
+    2.3 scRNA-seq的AD与Ctrl组聚类
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 scRNA-seq的AD与Ctrl组聚类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    2.3.1 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-scrna-seqfactor" class="md-nav__link">
+    2.3.2 scRNA-seq的factor设置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233" class="md-nav__link">
+    2.3.3 绘图设置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#234-ad" class="md-nav__link">
+    2.3.4 AD组绘图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#235-ctrl" class="md-nav__link">
+    2.3.5 Ctrl组绘图
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+  
+  
+
+
+<h1 id="mofa-python">MOFA下游分析: Python环节</h1>
+<h2 id="1">1. 数据准备</h2>
+<h3 id="11">1.1 导入依赖</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>import h5py
+<span class="linenos" data-linenos="2 "></span>import pandas as pd
+<span class="linenos" data-linenos="3 "></span>import numpy as np
+</code></pre></div>
+<h3 id="12">1.2 导入数据</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>f_ad = h5py.File(&#39;mofa_factor_ad.hdf5&#39;,&#39;r&#39;)   #打开h5文件
+<span class="linenos" data-linenos="2 "></span># 可以查看所有的主键
+<span class="linenos" data-linenos="3 "></span>for key in f_ad.keys():
+<span class="linenos" data-linenos="4 "></span>    print(f_ad[key].name)
+</code></pre></div>
+<blockquote>
+<p>/data /expectations /features /groups /intercepts /model_options /samples /training_opts /training_stats /variance_explained /views</p>
+</blockquote>
+<h3 id="13">1.3 导出权重数据</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>h5ls_out_ad=list(f_ad.keys())
+<span class="linenos" data-linenos="2 "></span>if(&#39;views&#39; in h5ls_out_ad):
+<span class="linenos" data-linenos="3 "></span>  view_names=f_ad[&#39;views&#39;][&#39;views&#39;][:]
+<span class="linenos" data-linenos="4 "></span>  group_names=f_ad[&#39;groups&#39;][&#39;groups&#39;][:]
+<span class="linenos" data-linenos="5 "></span>  feature_names=np.array([f_ad[&#39;features&#39;][i][:] for i in view_names])
+<span class="linenos" data-linenos="6 "></span>  sample_names=np.array([f_ad[&#39;samples&#39;][i][:] for i in group_names])
+</code></pre></div>
+<h3 id="14">1.4 标准化函数</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>def normalization(data):
+<span class="linenos" data-linenos="2 "></span>    _range = np.max(abs(data))
+<span class="linenos" data-linenos="3 "></span>    return data / _range
+</code></pre></div>
+<h3 id="15">1.5 获取权重函数</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>def get_weights(f,view,factor,scale=True):
+<span class="linenos" data-linenos=" 2 "></span>  view_names=f[&#39;views&#39;][&#39;views&#39;][:]
+<span class="linenos" data-linenos=" 3 "></span>  f_name=feature_names[np.where(view_names==str.encode(view))[0][0]]
+<span class="linenos" data-linenos=" 4 "></span>  f_w=f[&#39;expectations&#39;][&#39;W&#39;][view][factor-1]
+<span class="linenos" data-linenos=" 5 "></span>  if scale==True:
+<span class="linenos" data-linenos=" 6 "></span>    f_w=normalization(f_w)
+<span class="linenos" data-linenos=" 7 "></span>  res=pd.DataFrame()
+<span class="linenos" data-linenos=" 8 "></span>  res[&#39;feature&#39;]=f_name
+<span class="linenos" data-linenos=" 9 "></span>  res[&#39;weights&#39;]=f_w
+<span class="linenos" data-linenos="10 "></span>  res[&#39;abs_weights&#39;]=abs(f_w)
+<span class="linenos" data-linenos="11 "></span>  res[&#39;sig&#39;]=&#39;+&#39;
+<span class="linenos" data-linenos="12 "></span>  res.loc[(res.weights&lt;0),&#39;sig&#39;] = &#39;-&#39;
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span>  return res
+</code></pre></div>
+<h3 id="16">1.6 获取特定因子的基因权重</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>res1=get_weights(f_ad,&#39;rna&#39;,2)
+<span class="linenos" data-linenos="2 "></span>xl=[]
+<span class="linenos" data-linenos="3 "></span>for i in res1[&#39;feature&#39;].values:
+<span class="linenos" data-linenos="4 "></span>  xl.append(bytes.decode(i).replace(&#39;Mutation&#39;,&#39;&#39;))
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span>res1[&#39;feature&#39;]=xl
+<span class="linenos" data-linenos="7 "></span>res1.head()
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">feature</th>
+<th align="right">weights</th>
+<th align="right">abs_weights</th>
+<th align="right">sig</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">0</td>
+<td align="right">HES4</td>
+<td align="right">0.158418</td>
+<td align="right">0.158418</td>
+<td align="right">+</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="right">ATAD3C</td>
+<td align="right">-0.025514</td>
+<td align="right">0.025514</td>
+<td align="right">-</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="right">HES5</td>
+<td align="right">0.244909</td>
+<td align="right">0.244909</td>
+<td align="right">+</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="right">LINC00982</td>
+<td align="right">0.620071</td>
+<td align="right">0.620071</td>
+<td align="right">+</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="right">PRDM16</td>
+<td align="right">0.815560</td>
+<td align="right">0.815560</td>
+<td align="right">+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="17">1.7 可视化特定因子</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>import matplotlib.pyplot as plt
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span>def plot_high_weight(res,n_feature=10):
+<span class="linenos" data-linenos=" 5 "></span>  #定义字体
+<span class="linenos" data-linenos=" 6 "></span>  font1={
+<span class="linenos" data-linenos=" 7 "></span>    &#39;size&#39;:15,
+<span class="linenos" data-linenos=" 8 "></span>  }
+<span class="linenos" data-linenos=" 9 "></span>  #排序
+<span class="linenos" data-linenos="10 "></span>  res=res.sort_values(&#39;abs_weights&#39;,ascending=False)
+<span class="linenos" data-linenos="11 "></span>  res_p=res.iloc[:n_feature].sort_values(&#39;weights&#39;,ascending=True)
+<span class="linenos" data-linenos="12 "></span>  #获取xy
+<span class="linenos" data-linenos="13 "></span>  x=res_p[&#39;weights&#39;].values
+<span class="linenos" data-linenos="14 "></span>  y=range(len(res_p[&#39;weights&#39;]))
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span>  #定义图像大小
+<span class="linenos" data-linenos="17 "></span>  pp=plt.figure(figsize=(4,6))
+<span class="linenos" data-linenos="18 "></span>  ax=pp.add_subplot(1,1,1)
+<span class="linenos" data-linenos="19 "></span>  #定义+的起点
+<span class="linenos" data-linenos="20 "></span>  max_start=len(res_p)-len(res_p.loc[res_p[&#39;sig&#39;]==&#39;+&#39;])
+<span class="linenos" data-linenos="21 "></span>  #绘制散点图
+<span class="linenos" data-linenos="22 "></span>  ax.scatter(x[:max_start],y[:max_start],c=&quot;#00B0E0&quot;,alpha=0.5,linewidths=(np.zeros(len(res_p)-max_start)+2))
+<span class="linenos" data-linenos="23 "></span>  ax.scatter(x[max_start:],y[max_start:],c=&quot;#E82089&quot;,alpha=0.5,linewidths=(np.zeros(len(res_p)-max_start)+2))
+<span class="linenos" data-linenos="24 "></span>
+<span class="linenos" data-linenos="25 "></span>  #定义文字位置
+<span class="linenos" data-linenos="26 "></span>  ti=len(res_p)-len(res_p.loc[res_p[&#39;sig&#39;]==&#39;+&#39;]) #+
+<span class="linenos" data-linenos="27 "></span>  fi=0 #-
+<span class="linenos" data-linenos="28 "></span>  ti_max=7 #换行标记
+<span class="linenos" data-linenos="29 "></span>  fi_max=7
+<span class="linenos" data-linenos="30 "></span>  for i in range(10):
+<span class="linenos" data-linenos="31 "></span>    #如果为-
+<span class="linenos" data-linenos="32 "></span>    if res_p[&#39;sig&#39;].iloc[i]==&#39;-&#39;:
+<span class="linenos" data-linenos="33 "></span>      #计算文字长度
+<span class="linenos" data-linenos="34 "></span>      zl=len(res_p[&#39;feature&#39;].iloc[i])
+<span class="linenos" data-linenos="35 "></span>      #计算该行剩余长度
+<span class="linenos" data-linenos="36 "></span>      fi_max-=zl
+<span class="linenos" data-linenos="37 "></span>
+<span class="linenos" data-linenos="38 "></span>      ax.annotate(res_p[&#39;feature&#39;].iloc[i], xy=(x[i],y[i]), xytext=(-0.7+fi_max/7,fi),weight=&#39;heavy&#39;,
+<span class="linenos" data-linenos="39 "></span>               #bbox=dict(boxstyle=&#39;round,pad=0.3&#39;, fc=&#39;white&#39;, alpha=0.5),
+<span class="linenos" data-linenos="40 "></span>               arrowprops=dict(arrowstyle=&#39;-&gt;&#39;,color=&#39;grey&#39;),size=12)
+<span class="linenos" data-linenos="41 "></span>      #如果剩余长度不足0，那么换行
+<span class="linenos" data-linenos="42 "></span>      if fi_max&lt;0:
+<span class="linenos" data-linenos="43 "></span>        fi_max=10
+<span class="linenos" data-linenos="44 "></span>        fi+=1
+<span class="linenos" data-linenos="45 "></span>    else:
+<span class="linenos" data-linenos="46 "></span>      zl=len(res_p[&#39;feature&#39;].iloc[i])
+<span class="linenos" data-linenos="47 "></span>      ax.annotate(res_p[&#39;feature&#39;].iloc[i], xy=(x[i],y[i]), xytext=(1-ti_max/7,ti),weight=&#39;heavy&#39;,
+<span class="linenos" data-linenos="48 "></span>               #bbox=dict(boxstyle=&#39;round,pad=0.3&#39;, fc=&#39;white&#39;, alpha=0.5),
+<span class="linenos" data-linenos="49 "></span>               arrowprops=dict(arrowstyle=&#39;-&gt;&#39;,color=&#39;grey&#39;),size=12)
+<span class="linenos" data-linenos="50 "></span>      ti_max-=zl
+<span class="linenos" data-linenos="51 "></span>      if ti_max&lt;0:
+<span class="linenos" data-linenos="52 "></span>        ti_max=10
+<span class="linenos" data-linenos="53 "></span>        ti+=1
+<span class="linenos" data-linenos="54 "></span>
+<span class="linenos" data-linenos="55 "></span>  plt.xlim(-1.5,1.5)
+<span class="linenos" data-linenos="56 "></span>  plt.yticks(fontsize=15)
+<span class="linenos" data-linenos="57 "></span>  plt.xticks(fontsize=15)
+<span class="linenos" data-linenos="58 "></span>  #设置图注
+<span class="linenos" data-linenos="59 "></span>  plt.legend([&quot;-&quot;,&quot;+&quot;],loc=&#39;best&#39;,fontsize=12)
+<span class="linenos" data-linenos="60 "></span>  #设置横纵标题
+<span class="linenos" data-linenos="61 "></span>  ax.set_ylabel(&#39;Rank&#39;,font1)                   
+<span class="linenos" data-linenos="62 "></span>  ax.set_xlabel(&#39;Weights&#39;,font1)
+<span class="linenos" data-linenos="63 "></span>
+<span class="linenos" data-linenos="64 "></span>plot_high_weight(res1,10)
+</code></pre></div>
+<p><img alt="下载 (3)" src="../mofa_7.assets/%E4%B8%8B%E8%BD%BD%20%283%29.png" /></p>
+<h3 id="18-varcor">1.8 Var跟Cor数据导入</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>variance=pd.read_csv(&#39;/content/drive/MyDrive/GSE174367/ad/variance_explained.csv&#39;)
+<span class="linenos" data-linenos="2 "></span>corr=pd.read_csv(&#39;/content/drive/MyDrive/GSE174367/ad/correlate_factors.csv&#39;)
+<span class="linenos" data-linenos="3 "></span>variance.index=corr.index
+</code></pre></div>
+<h3 id="19-var">1.9 Var可视化</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>fig, ax = plt.subplots(figsize=(2,6))         # Sample figsize in inches
+<span class="linenos" data-linenos=" 2 "></span>g=sns.heatmap(variance,
+<span class="linenos" data-linenos=" 3 "></span>      cmap=palettable.colorbrewer.sequential.Blues_9.mpl_colors, 
+<span class="linenos" data-linenos=" 4 "></span>      linewidths=.5,annot_kws={&quot;size&quot;: 15},ax=ax
+<span class="linenos" data-linenos=" 5 "></span>      )
+<span class="linenos" data-linenos=" 6 "></span>g.set_xticklabels(g.get_xmajorticklabels(), fontsize = 15,rotation=45, horizontalalignment=&#39;right&#39;,)
+<span class="linenos" data-linenos=" 7 "></span>g.set_yticklabels(g.get_ymajorticklabels(), fontsize = 15)
+<span class="linenos" data-linenos=" 8 "></span>cbar = g.collections[0].colorbar
+<span class="linenos" data-linenos=" 9 "></span># here set the labelsize by 20
+<span class="linenos" data-linenos="10 "></span>cbar.ax.tick_params(labelsize=15)
+</code></pre></div>
+<p><img alt="下载 (4)" src="../mofa_7.assets/%E4%B8%8B%E8%BD%BD%20%284%29.png" /></p>
+<h3 id="110-cor">1.10 Cor可视化</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>         <span class="c1"># Sample figsize in inches</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">g</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 3 "></span>      <span class="n">cmap</span><span class="o">=</span><span class="n">palettable</span><span class="o">.</span><span class="n">colorbrewer</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Reds_9</span><span class="o">.</span><span class="n">mpl_colors</span><span class="p">,</span> 
+<span class="linenos" data-linenos=" 4 "></span>      <span class="n">linewidths</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span><span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">},</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span>      <span class="p">)</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_xmajorticklabels</span><span class="p">(),</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,)</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">g</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_ymajorticklabels</span><span class="p">(),</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">cbar</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">colorbar</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1"># here set the labelsize by 20</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="下载 (5)" src="../mofa_7.assets/%E4%B8%8B%E8%BD%BD%20%285%29.png" /></p>
+<h2 id="2">2. 单细胞环节</h2>
+<h3 id="21">2.1 导入数据</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>rna=anndata.read_h5ad(&quot;rna_pair_mofa.h5ad&quot;)
+<span class="linenos" data-linenos="2 "></span>atac=anndata.read_h5ad(&quot;atac_pair_mofa.h5ad&quot;)
+<span class="linenos" data-linenos="3 "></span>ret3= list(set(rna.obs.index).intersection(atac.obs.index))
+</code></pre></div>
+<h4 id="211-rna">2.1.1 rna数据</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>rna_sex=rna[ret3]
+<span class="linenos" data-linenos="2 "></span>for i in list(set(rna_sex.obs[&#39;cell_type&#39;])):
+<span class="linenos" data-linenos="3 "></span>  print(i,len(rna_sex.obs.loc[rna_sex.obs[&#39;cell_type&#39;]==i])/len(rna_sex.obs))
+</code></pre></div>
+<blockquote>
+<p>PER.END 0.0039946737683089215 </p>
+<p>EX 0.07789613848202397 </p>
+<p>ODC 0.7200399467376831 </p>
+<p>MG 0.046937416777629824 </p>
+<p>INH 0.05858854860186418 </p>
+<p>OPC 0.027796271637816245 </p>
+<p>ASC 0.06474700399467377</p>
+</blockquote>
+<h4 id="212-atac">2.1.2 atac数据</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>atac_sex=atac[ret3]
+<span class="linenos" data-linenos="2 "></span>for i in list(set(atac_sex.obs[&#39;cell_type&#39;])):
+<span class="linenos" data-linenos="3 "></span>  print(i,len(atac_sex.obs.loc[atac_sex.obs[&#39;cell_type&#39;]==i])/len(atac_sex.obs))
+</code></pre></div>
+<blockquote>
+<p>PER.END 0.003828229027962716 </p>
+<p>EX 0.07440079893475367 </p>
+<p>ODC 0.7187083888149135 </p>
+<p>MG 0.051098535286284955 </p>
+<p>INH 0.05858854860186418 </p>
+<p>OPC 0.02796271637816245 </p>
+<p>ASC 0.06541278295605858</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ret_sex= list(set(rna_sex.obs.index).intersection(atac_sex.obs.index))
+<span class="linenos" data-linenos="2 "></span>len(ret_sex)
+</code></pre></div>
+<h3 id="22-scrna-seqscatac-seq">2.2 scRNA-seq与scATAC-seq细胞类型比较</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>cell_type=list(set(atac_sex[ret_sex].obs[&#39;cell_type&#39;]))
+<span class="linenos" data-linenos="2 "></span>test_df=pd.DataFrame(columns=cell_type,index=cell_type)
+<span class="linenos" data-linenos="3 "></span>for i in cell_type:
+<span class="linenos" data-linenos="4 "></span>  for j in cell_type:
+<span class="linenos" data-linenos="5 "></span>    test_index=atac_sex[ret_sex].obs[atac_sex[ret_sex].obs[&#39;cell_type&#39;]==i].index
+<span class="linenos" data-linenos="6 "></span>    test_df.loc[i,j]=len(rna_sex[test_index].obs[rna_sex[test_index].obs[&#39;cell_type&#39;]==j])/len(test_index)
+<span class="linenos" data-linenos="7 "></span>test_df
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">ODC</th>
+<th align="right">PER.END</th>
+<th align="right">EX</th>
+<th align="right">INH</th>
+<th align="right">ASC</th>
+<th align="right">OPC</th>
+<th align="right">MG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ODC</td>
+<td align="right">0.994908</td>
+<td align="right">0</td>
+<td align="right">0.00203666</td>
+<td align="right">0.00152749</td>
+<td align="right">0</td>
+<td align="right">0.00152749</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">PER.END</td>
+<td align="right">0.0833333</td>
+<td align="right">0.916667</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">EX</td>
+<td align="right">0</td>
+<td align="right">0.00222222</td>
+<td align="right">0.991111</td>
+<td align="right">0.00666667</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">INH</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.00510204</td>
+<td align="right">0.994898</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">ASC</td>
+<td align="right">0.0135922</td>
+<td align="right">0</td>
+<td align="right">0.0291262</td>
+<td align="right">0.0038835</td>
+<td align="right">0.953398</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">OPC</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.00813008</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.99187</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">MG</td>
+<td align="right">0.113514</td>
+<td align="right">0</td>
+<td align="right">0.0648649</td>
+<td align="right">0.00540541</td>
+<td align="right">0.027027</td>
+<td align="right">0.0108108</td>
+<td align="right">0.778378</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>import seaborn as sns
+<span class="linenos" data-linenos=" 2 "></span>import matplotlib.pyplot as plt
+<span class="linenos" data-linenos=" 3 "></span>fig, ax = plt.subplots(figsize=(4,4))         # Sample figsize in inches
+<span class="linenos" data-linenos=" 4 "></span>new_blues=sns.color_palette(&quot;Reds&quot;, 1000)[0:700]
+<span class="linenos" data-linenos=" 5 "></span>g=sns.heatmap(test_df.astype(float),square=True,cmap=new_blues,
+<span class="linenos" data-linenos=" 6 "></span>       linewidths=.5,annot_kws={&quot;size&quot;: 15},ax=ax)
+<span class="linenos" data-linenos=" 7 "></span>g.set_xticklabels(g.get_xmajorticklabels(), fontsize = 15,rotation=45, horizontalalignment=&#39;right&#39;,)
+<span class="linenos" data-linenos=" 8 "></span>g.set_yticklabels(g.get_ymajorticklabels(), fontsize = 15,rotation=360)
+<span class="linenos" data-linenos=" 9 "></span>cbar = g.collections[0].colorbar
+<span class="linenos" data-linenos="10 "></span># here set the labelsize by 20
+<span class="linenos" data-linenos="11 "></span>cbar.ax.tick_params(labelsize=15)
+<span class="linenos" data-linenos="12 "></span>plt.savefig(&quot;fig1_b_corr.png&quot;,dpi=300,bbox_inches = &#39;tight&#39;)
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../mofa_7.assets/%E4%B8%8B%E8%BD%BD%20%286%29.png" width="300" /></p>
+</figure>
+<h3 id="23-scrna-seqadctrl">2.3 scRNA-seq的AD与Ctrl组聚类</h3>
+<h4 id="231">2.3.1 导入数据</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ad_meta=pd.read_csv(&#39;/content/drive/MyDrive/GSE174367/mofa_sex_ad_meta.csv&#39;)
+<span class="linenos" data-linenos="2 "></span>ctrl_meta=pd.read_csv(&#39;/content/drive/MyDrive/GSE174367/mofa_sex_ctrl_meta.csv&#39;)
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span>res_ad=rna_sex[ad_meta[&#39;sample&#39;]]
+<span class="linenos" data-linenos="5 "></span>res_ctrl=rna_sex[ctrl_meta[&#39;sample&#39;]]
+</code></pre></div>
+<h4 id="232-scrna-seqfactor">2.3.2 scRNA-seq的factor设置</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>f_ad = h5py.File(&#39;mofa_factor_ad.hdf5&#39;,&#39;r&#39;)   #打开h5文件
+<span class="linenos" data-linenos="2 "></span>f_ctrl = h5py.File(&#39;mofa_factor_ctrl.hdf5&#39;,&#39;r&#39;)   #打开h5文件
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span>for i in range(f_ad[&#39;expectations&#39;][&#39;Z&#39;][&#39;group0&#39;].shape[0]):
+<span class="linenos" data-linenos="5 "></span>  res_ad.obs[&#39;factor{0}&#39;.format(i+1)]=f_ad[&#39;expectations&#39;][&#39;Z&#39;][&#39;group0&#39;][i]
+<span class="linenos" data-linenos="6 "></span>for i in range(f_ctrl[&#39;expectations&#39;][&#39;Z&#39;][&#39;group0&#39;].shape[0]):
+<span class="linenos" data-linenos="7 "></span>  res_ctrl.obs[&#39;factor{0}&#39;.format(i+1)]=f_ctrl[&#39;expectations&#39;][&#39;Z&#39;][&#39;group0&#39;][i]
+</code></pre></div>
+<h4 id="233">2.3.3 绘图设置</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sc.settings.verbosity = 3             # verbosity: errors (0), warnings (1), info (2), hints (3)
+<span class="linenos" data-linenos="2 "></span>sc.logging.print_header()
+<span class="linenos" data-linenos="3 "></span>sc.settings.set_figure_params(dpi=80, facecolor=&#39;white&#39;,figsize=14)
+<span class="linenos" data-linenos="4 "></span>scnmt=[&#39;#f2535d&#39;,&#39;#a2e8c4&#39;,&#39;#e5e24f&#39;,&#39;#6aafda&#39;,&#39;#c76fc7&#39;,&#39;#c4425d&#39;,&#39;#f48a3d&#39;]
+</code></pre></div>
+<h4 id="234-ad">2.3.4 AD组绘图</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sc.pp.neighbors(res_ad, metric=&quot;cosine&quot;)
+<span class="linenos" data-linenos="2 "></span>sc.tl.umap(res_ad,random_state=41822099)
+<span class="linenos" data-linenos="3 "></span>sc.settings.set_figure_params(dpi=80, facecolor=&#39;white&#39;,figsize=[4,4])
+<span class="linenos" data-linenos="4 "></span>sc.pl.umap(res_ad,color=[&quot;cell_type&quot;,&quot;factor1&quot;,&quot;factor2&quot;,&quot;factor4&quot;], wspace=0.2, palette=scnmt,
+<span class="linenos" data-linenos="5 "></span>      cmap=&#39;coolwarm&#39;,vmin=-5,vmax=5,frameon=False,add_outline=True,outline_color=(&#39;white&#39;,&#39;white&#39;))
+</code></pre></div>
+<p><img alt="下载 (7)" src="../mofa_7.assets/%E4%B8%8B%E8%BD%BD%20%287%29.png" /></p>
+<h4 id="235-ctrl">2.3.5 Ctrl组绘图</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>sc.pp.neighbors(res_ctrl, metric=&quot;cosine&quot;)
+<span class="linenos" data-linenos="2 "></span>sc.tl.umap(res_ctrl,random_state=41822099)
+<span class="linenos" data-linenos="3 "></span>sc.settings.set_figure_params(dpi=80, facecolor=&#39;white&#39;,figsize=[4,4])
+<span class="linenos" data-linenos="4 "></span>sc.pl.umap(res_ctrl,color=[&quot;cell_type&quot;,&quot;factor1&quot;,&quot;factor2&quot;,&quot;factor4&quot;], wspace=0.2, palette=scnmt,
+<span class="linenos" data-linenos="5 "></span>      cmap=&#39;coolwarm&#39;,vmin=-5,vmax=5,frameon=False,add_outline=True,outline_color=(&#39;white&#39;,&#39;white&#39;))
+</code></pre></div>
+<p><img alt="下载 (8)" src="../mofa_7.assets/%E4%B8%8B%E8%BD%BD%20%288%29.png" /></p>
+
+
+
+
+
+                
+
+  
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fc8c2696.min.js"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

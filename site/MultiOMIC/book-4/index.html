@@ -1,0 +1,1756 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../book-3/">
+      
+      
+        <link rel="next" href="../book-5/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
+    
+    
+      
+        <title>6-4. 差异表达分析 - Bioinformatic Tutorial (Daxing Research)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7bf56d0a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#42" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-header__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bioinformatic Tutorial (Daxing Research)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6-4. 差异表达分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-nav__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Bioinformatic Tutorial (Daxing Research)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        写在前面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          基础环境配置
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          基础环境配置
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_1/" class="md-nav__link">
+        配置1. Python环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_2/" class="md-nav__link">
+        配置2. Linux环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_3/" class="md-nav__link">
+        配置3. R语言环境
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          RNA-seq上游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq上游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_1/" class="md-nav__link">
+        1-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_2/" class="md-nav__link">
+        1-2. 上游分析全教程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          RNA-seq下游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq下游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_1/" class="md-nav__link">
+        2-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_2/" class="md-nav__link">
+        2-2. 差异表达基因(DEG)分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_3/" class="md-nav__link">
+        2-3. 通路富集分析(GSEA)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          单细胞样本对齐
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          单细胞样本对齐
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_1/" class="md-nav__link">
+        3-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_2/" class="md-nav__link">
+        3-2. 数据预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_3/" class="md-nav__link">
+        3-3. 模型准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_4/" class="md-nav__link">
+        3-4. 模型训练
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_5/" class="md-nav__link">
+        3-5. 对齐细胞
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MOFA单细胞多组学因子分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MOFA单细胞多组学因子分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_1/" class="md-nav__link">
+        4-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_2/" class="md-nav__link">
+        4-2. 单细胞样本对齐
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_3/" class="md-nav__link">
+        4-3. scRNA-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_4/" class="md-nav__link">
+        4-4. scATAC-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_5/" class="md-nav__link">
+        4-5. MOFA模型构建
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_6/" class="md-nav__link">
+        4-6. MOFA下游分析-R语言环节
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_7/" class="md-nav__link">
+        4-7. MOFA下游分析-Python环节
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          TMT蛋白组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          TMT蛋白组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_1/" class="md-nav__link">
+        5-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_2/" class="md-nav__link">
+        5-2. TMT蛋白组学上游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_3/" class="md-nav__link">
+        5-3. TMT蛋白组学下游分析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          多组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          多组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-1/" class="md-nav__link">
+        6-1. 数据准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-2/" class="md-nav__link">
+        6-2. GLUE多组学整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-3/" class="md-nav__link">
+        6-3. 细胞亚群分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          6-4. 差异表达分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        6-4. 差异表达分析
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 差异表达分析
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-5/" class="md-nav__link">
+        6-5. 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-6/" class="md-nav__link">
+        6-6. 动态调控分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-7/" class="md-nav__link">
+        6-7. 转录因子网络
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          Python可视化
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Python可视化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_1/" class="md-nav__link">
+        1-1. 火山图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_2/" class="md-nav__link">
+        1-2. 箱线图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_3/" class="md-nav__link">
+        1-3. 热图(聚类)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          视网膜母细胞瘤分析教程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          视网膜母细胞瘤分析教程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/rb_tutorial/" class="md-nav__link">
+        Base
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_1_preprocess/" class="md-nav__link">
+        教程1: 单细胞上游结果预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_2_filtered_qc/" class="md-nav__link">
+        教程2: 质量控制与过滤
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_3_glue/" class="md-nav__link">
+        教程3: scRNA-seq与scATAC-seq整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_4_scbasset/" class="md-nav__link">
+        教程4: Motif活性分数计算
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_5_analysis1/" class="md-nav__link">
+        教程5: 综合分析1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_6_analysis2/" class="md-nav__link">
+        教程6: 综合分析1-Chromatin activity和Motif score评估
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_7_STER_cell/" class="md-nav__link">
+        教程7: STER cell下游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_8_kineic_photo/" class="md-nav__link">
+        教程8: 转录动力学分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_9_cellphonedb/" class="md-nav__link">
+        教程9: 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 差异表达分析
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+  
+  
+
+
+  <h1>6-4. 差异表达分析</h1>
+
+<h3 id="42">4.2 差异表达分析</h3>
+<p>我们需要分析的是阴性淋巴结与阳性淋巴结，一个很直观的思想就是，我们是不是希望知道阳性淋巴结跟阴性淋巴结有什么区别？那么我们现在得到了淋巴结的scRNA-seq与scATAC-seq数据，我们是不是可以找出两个组学层的共同点？</p>
+<p>我们首先导入包</p>
+<p>我们首先需要导入包，以及一些相关函数的准备</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">#导入包</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span> <span class="nn">anndata</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;anndata(Ver): &#39;</span><span class="p">,</span><span class="n">anndata</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;scanpy(Ver): &#39;</span><span class="p">,</span><span class="n">sc</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="kn">import</span> <span class="nn">scltnn</span> <span class="c1">#非必需</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;scltnn(Ver): &#39;</span><span class="p">,</span><span class="n">scltnn</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="linenos" data-linenos="10 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matplotlib(Ver): &#39;</span><span class="p">,</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos" data-linenos="12 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;seaborn(Ver): &#39;</span><span class="p">,</span><span class="n">sns</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos" data-linenos="14 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;numpy(Ver): &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos" data-linenos="16 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pandas(Ver): &#39;</span><span class="p">,</span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span><span class="kn">import</span> <span class="nn">scvelo</span> <span class="k">as</span> <span class="nn">scv</span>
+<span class="linenos" data-linenos="18 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;scvelo(Ver): &#39;</span><span class="p">,</span><span class="n">scv</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span><span class="kn">import</span> <span class="nn">Pyomic</span>
+<span class="linenos" data-linenos="20 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pyomic(Ver): &#39;</span><span class="p">,</span><span class="n">Pyomic</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="c1">#绘图参数设置</span>
+<span class="linenos" data-linenos="23 "></span><span class="n">sc</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="mi">3</span>             <span class="c1"># verbosity: errors (0), warnings (1), info (2), hints (3)</span>
+<span class="linenos" data-linenos="24 "></span><span class="n">sc</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">set_figure_params</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="n">sc_color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#7CBB5F&#39;</span><span class="p">,</span><span class="s1">&#39;#368650&#39;</span><span class="p">,</span><span class="s1">&#39;#A499CC&#39;</span><span class="p">,</span><span class="s1">&#39;#5E4D9A&#39;</span><span class="p">,</span><span class="s1">&#39;#78C2ED&#39;</span><span class="p">,</span><span class="s1">&#39;#866017&#39;</span><span class="p">,</span><span class="s1">&#39;#9F987F&#39;</span><span class="p">,</span> <span class="s1">&#39;#E0DFED&#39;</span><span class="p">,</span> <span class="s1">&#39;#EF7B77&#39;</span><span class="p">,</span> <span class="s1">&#39;#279AD7&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="27 "></span> <span class="s1">&#39;#F0EEF0&#39;</span><span class="p">,</span> <span class="s1">&#39;#1F577B&#39;</span><span class="p">,</span> <span class="s1">&#39;#A56BA7&#39;</span><span class="p">,</span> <span class="s1">&#39;#E0A7C8&#39;</span><span class="p">,</span> <span class="s1">&#39;#E069A6&#39;</span><span class="p">,</span> <span class="s1">&#39;#941456&#39;</span><span class="p">,</span> <span class="s1">&#39;#FCBC10&#39;</span><span class="p">,</span> <span class="s1">&#39;#EAEFC5&#39;</span><span class="p">,</span> <span class="s1">&#39;#01A0A7&#39;</span><span class="p">,</span> <span class="s1">&#39;#75C8CC&#39;</span><span class="p">,</span> 
+<span class="linenos" data-linenos="28 "></span><span class="s1">&#39;#F0D7BC&#39;</span><span class="p">,</span> <span class="s1">&#39;#D5B26C&#39;</span><span class="p">,</span> <span class="s1">&#39;#D5DA48&#39;</span><span class="p">,</span> <span class="s1">&#39;#B6B812&#39;</span><span class="p">,</span><span class="s1">&#39;#9DC3C3&#39;</span><span class="p">,</span> <span class="s1">&#39;#A89C92&#39;</span><span class="p">,</span> <span class="s1">&#39;#FEE00C&#39;</span><span class="p">,</span><span class="s1">&#39;#FEF2A1&#39;</span><span class="p">]</span>
+</code></pre></div>
+<p>我们在前面已经完成了GLUE的分析了，意味着我们拿到了配对好的细胞结果，所以我们这里定义一个新的函数用于配对细胞</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">adata_rename</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span><span class="n">pair</span><span class="p">,</span><span class="n">omic_name</span><span class="o">=</span><span class="s1">&#39;omic_1&#39;</span><span class="p">):</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="n">ret</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="n">omic_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+<span class="linenos" data-linenos="3 "></span>    <span class="n">new_pair</span><span class="o">=</span><span class="n">pair</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="n">omic_name</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">ret</span><span class="p">)]</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">[</span><span class="n">new_pair</span><span class="p">[</span><span class="n">omic_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+<span class="linenos" data-linenos="5 "></span>    <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">new_pair</span><span class="o">.</span><span class="n">index</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="k">return</span> <span class="n">adata</span>
+</code></pre></div>
+<p>该函数需要的pair文件如下</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">#其中omic_1代表rna层，omic_2代表atac层</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">res_pair</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../multi_omics/res_pair.csv&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">res_pair</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">res_pair</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">res_pair</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">omic_1</th>
+<th align="right">omic_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">Unnamed: 0</td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="right">cell_0</td>
+<td align="right">AACTCAGCATGATCCA</td>
+<td align="right">neg-GCACGGTGTGCAAGAC-1</td>
+</tr>
+<tr>
+<td align="right">cell_1</td>
+<td align="right">AAACGGGTCGGCGCAT</td>
+<td align="right">neg-TCTATTGAGAGGCAGG-1</td>
+</tr>
+<tr>
+<td align="right">cell_2</td>
+<td align="right">GACGCGTAGACAAGCC</td>
+<td align="right">neg-GTGTCCTGTCATTGCA-1</td>
+</tr>
+<tr>
+<td align="right">cell_3</td>
+<td align="right">AAACCTGTCCCAACGG-1</td>
+<td align="right">neg-AGTGTACCATGTGGGA-1</td>
+</tr>
+<tr>
+<td align="right">cell_4</td>
+<td align="right">CATATTCCAAACCCAT</td>
+<td align="right">neg-TCAGCTCCAACGGGTA-1</td>
+</tr>
+</tbody>
+</table>
+<p>我们读取前面注释好的B细胞的rna文件，并使用我们定义的这个函数筛选出配对好的细胞</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">rna</span><span class="o">=</span><span class="n">sc</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;B_cell_anno_new.h5ad&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">rna</span><span class="o">=</span><span class="n">adata_rename</span><span class="p">(</span><span class="n">rna</span><span class="p">,</span><span class="n">res_pair</span><span class="p">,</span><span class="s1">&#39;omic_1&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">rna</span>
+</code></pre></div>
+<p>输出结果</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>View<span class="w"> </span>of<span class="w"> </span>AnnData<span class="w"> </span>object<span class="w"> </span>with<span class="w"> </span>n_obs<span class="w"> </span>×<span class="w"> </span><span class="nv">n_vars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4315</span><span class="w"> </span>×<span class="w"> </span><span class="m">1945</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span>obs:<span class="w"> </span><span class="s1">&#39;Type&#39;</span>,<span class="w"> </span><span class="s1">&#39;initial_size_spliced&#39;</span>,<span class="w"> </span><span class="s1">&#39;initial_size_unspliced&#39;</span>,<span class="w"> </span><span class="s1">&#39;initial_size&#39;</span>,<span class="w"> </span><span class="s1">&#39;domain&#39;</span>,<span class="w"> </span><span class="s1">&#39;n_genes&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden&#39;</span>,<span class="w"> </span><span class="s1">&#39;n_counts&#39;</span>,<span class="w"> </span><span class="s1">&#39;major_celltype&#39;</span>,<span class="w"> </span><span class="s1">&#39;velocity_self_transition&#39;</span>,<span class="w"> </span><span class="s1">&#39;root_cells&#39;</span>,<span class="w"> </span><span class="s1">&#39;end_points&#39;</span>,<span class="w"> </span><span class="s1">&#39;velocity_pseudotime&#39;</span>,<span class="w"> </span><span class="s1">&#39;latent_time&#39;</span>,<span class="w"> </span><span class="s1">&#39;B_celltype&#39;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span>var:<span class="w"> </span><span class="s1">&#39;gene_ids&#39;</span>,<span class="w"> </span><span class="s1">&#39;feature_types&#39;</span>,<span class="w"> </span><span class="s1">&#39;genome&#39;</span>,<span class="w"> </span><span class="s1">&#39;Accession&#39;</span>,<span class="w"> </span><span class="s1">&#39;Chromosome&#39;</span>,<span class="w"> </span><span class="s1">&#39;End&#39;</span>,<span class="w"> </span><span class="s1">&#39;Start&#39;</span>,<span class="w"> </span><span class="s1">&#39;Strand&#39;</span>,<span class="w"> </span><span class="s1">&#39;n_cells&#39;</span>,<span class="w"> </span><span class="s1">&#39;highly_variable&#39;</span>,<span class="w"> </span><span class="s1">&#39;highly_variable_rank&#39;</span>,<span class="w"> </span><span class="s1">&#39;means&#39;</span>,<span class="w"> </span><span class="s1">&#39;variances&#39;</span>,<span class="w"> </span><span class="s1">&#39;variances_norm&#39;</span>,<span class="w"> </span><span class="s1">&#39;mean&#39;</span>,<span class="w"> </span><span class="s1">&#39;std&#39;</span>,<span class="w"> </span><span class="s1">&#39;chrom&#39;</span>,<span class="w"> </span><span class="s1">&#39;chromStart&#39;</span>,<span class="w"> </span><span class="s1">&#39;chromEnd&#39;</span>,<span class="w"> </span><span class="s1">&#39;name&#39;</span>,<span class="w"> </span><span class="s1">&#39;score&#39;</span>,<span class="w"> </span><span class="s1">&#39;strand&#39;</span>,<span class="w"> </span><span class="s1">&#39;thickStart&#39;</span>,<span class="w"> </span><span class="s1">&#39;thickEnd&#39;</span>,<span class="w"> </span><span class="s1">&#39;itemRgb&#39;</span>,<span class="w"> </span><span class="s1">&#39;blockCount&#39;</span>,<span class="w"> </span><span class="s1">&#39;blockSizes&#39;</span>,<span class="w"> </span><span class="s1">&#39;blockStarts&#39;</span>,<span class="w"> </span><span class="s1">&#39;gene_id&#39;</span>,<span class="w"> </span><span class="s1">&#39;gene_type&#39;</span>,<span class="w"> </span><span class="s1">&#39;hgnc_id&#39;</span>,<span class="w"> </span><span class="s1">&#39;havana_gene&#39;</span>,<span class="w"> </span><span class="s1">&#39;tag&#39;</span>,<span class="w"> </span><span class="s1">&#39;dell&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_r2&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_alpha&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_beta&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_gamma&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_t_&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_scaling&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_std_u&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_std_s&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_likelihood&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_u0&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_s0&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_pval_steady&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_steady_u&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_steady_s&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_variance&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_alignment_scaling&#39;</span>,<span class="w"> </span><span class="s1">&#39;velocity_genes&#39;</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span>uns:<span class="w"> </span><span class="s1">&#39;B_celltype_colors&#39;</span>,<span class="w"> </span><span class="s1">&#39;B_celltype_sizes&#39;</span>,<span class="w"> </span><span class="s1">&#39;Type_colors&#39;</span>,<span class="w"> </span><span class="s1">&#39;cosg&#39;</span>,<span class="w"> </span><span class="s1">&#39;dendrogram_B_celltype&#39;</span>,<span class="w"> </span><span class="s1">&#39;dendrogram_leiden&#39;</span>,<span class="w"> </span><span class="s1">&#39;hvg&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden_colors&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden_sizes&#39;</span>,<span class="w"> </span><span class="s1">&#39;log1p&#39;</span>,<span class="w"> </span><span class="s1">&#39;major_celltype_colors&#39;</span>,<span class="w"> </span><span class="s1">&#39;neighbors&#39;</span>,<span class="w"> </span><span class="s1">&#39;paga&#39;</span>,<span class="w"> </span><span class="s1">&#39;pca&#39;</span>,<span class="w"> </span><span class="s1">&#39;rank_genes_groups&#39;</span>,<span class="w"> </span><span class="s1">&#39;recover_dynamics&#39;</span>,<span class="w"> </span><span class="s1">&#39;umap&#39;</span>,<span class="w"> </span><span class="s1">&#39;velocity_graph&#39;</span>,<span class="w"> </span><span class="s1">&#39;velocity_graph_neg&#39;</span>,<span class="w"> </span><span class="s1">&#39;velocity_params&#39;</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span>obsm:<span class="w"> </span><span class="s1">&#39;X_glue&#39;</span>,<span class="w"> </span><span class="s1">&#39;X_pca&#39;</span>,<span class="w"> </span><span class="s1">&#39;X_umap&#39;</span>,<span class="w"> </span><span class="s1">&#39;velocity_umap&#39;</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span>varm:<span class="w"> </span><span class="s1">&#39;PCs&#39;</span>,<span class="w"> </span><span class="s1">&#39;X_glue&#39;</span>,<span class="w"> </span><span class="s1">&#39;loss&#39;</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span>layers:<span class="w"> </span><span class="s1">&#39;Ms&#39;</span>,<span class="w"> </span><span class="s1">&#39;Mu&#39;</span>,<span class="w"> </span><span class="s1">&#39;ambiguous&#39;</span>,<span class="w"> </span><span class="s1">&#39;counts&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_t&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_tau&#39;</span>,<span class="w"> </span><span class="s1">&#39;fit_tau_&#39;</span>,<span class="w"> </span><span class="s1">&#39;matrix&#39;</span>,<span class="w"> </span><span class="s1">&#39;spliced&#39;</span>,<span class="w"> </span><span class="s1">&#39;unspliced&#39;</span>,<span class="w"> </span><span class="s1">&#39;velocity&#39;</span>,<span class="w"> </span><span class="s1">&#39;velocity_u&#39;</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span>obsp:<span class="w"> </span><span class="s1">&#39;connectivities&#39;</span>,<span class="w"> </span><span class="s1">&#39;distances&#39;</span>
+</code></pre></div>
+<p>我们读取没有注释的atac_gs_anno文件(这是基因活性矩阵)，并使用前面定义的<code>adata_rename</code>函数以及rna的obs特征筛选出配对好的细胞</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">atac_act</span><span class="o">=</span><span class="n">sc</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;../cellanno/atac_gs_anno.h5ad&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">atac_act</span><span class="o">=</span><span class="n">adata_rename</span><span class="p">(</span><span class="n">atac_act</span><span class="p">,</span><span class="n">res_pair</span><span class="p">,</span><span class="s1">&#39;omic_2&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">atac_act</span><span class="o">=</span><span class="n">atac_act</span><span class="p">[</span><span class="n">rna</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">atac_act</span><span class="o">=</span><span class="n">atac_act</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">to_adata</span><span class="p">()</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">atac_act</span><span class="o">.</span><span class="n">obs</span><span class="o">=</span><span class="n">rna</span><span class="o">.</span><span class="n">obs</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">atac_act</span>
+</code></pre></div>
+<p>输出结果</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>AnnData<span class="w"> </span>object<span class="w"> </span>with<span class="w"> </span>n_obs<span class="w"> </span>×<span class="w"> </span><span class="nv">n_vars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4315</span><span class="w"> </span>×<span class="w"> </span><span class="m">28307</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span>obs:<span class="w"> </span><span class="s1">&#39;Type&#39;</span>,<span class="w"> </span><span class="s1">&#39;initial_size_spliced&#39;</span>,<span class="w"> </span><span class="s1">&#39;initial_size_unspliced&#39;</span>,<span class="w"> </span><span class="s1">&#39;initial_size&#39;</span>,<span class="w"> </span><span class="s1">&#39;domain&#39;</span>,<span class="w"> </span><span class="s1">&#39;n_genes&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden&#39;</span>,<span class="w"> </span><span class="s1">&#39;n_counts&#39;</span>,<span class="w"> </span><span class="s1">&#39;major_celltype&#39;</span>,<span class="w"> </span><span class="s1">&#39;velocity_self_transition&#39;</span>,<span class="w"> </span><span class="s1">&#39;root_cells&#39;</span>,<span class="w"> </span><span class="s1">&#39;end_points&#39;</span>,<span class="w"> </span><span class="s1">&#39;velocity_pseudotime&#39;</span>,<span class="w"> </span><span class="s1">&#39;latent_time&#39;</span>,<span class="w"> </span><span class="s1">&#39;B_celltype&#39;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span>var:<span class="w"> </span><span class="s1">&#39;mt&#39;</span>,<span class="w"> </span><span class="s1">&#39;n_cells_by_counts&#39;</span>,<span class="w"> </span><span class="s1">&#39;mean_counts&#39;</span>,<span class="w"> </span><span class="s1">&#39;pct_dropout_by_counts&#39;</span>,<span class="w"> </span><span class="s1">&#39;total_counts&#39;</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span>uns:<span class="w"> </span><span class="s1">&#39;Type_colors&#39;</span>,<span class="w"> </span><span class="s1">&#39;dendrogram_leiden&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden_colors&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden_sizes&#39;</span>,<span class="w"> </span><span class="s1">&#39;log1p&#39;</span>,<span class="w"> </span><span class="s1">&#39;major_celltype_colors&#39;</span>,<span class="w"> </span><span class="s1">&#39;neighbors&#39;</span>,<span class="w"> </span><span class="s1">&#39;paga&#39;</span>,<span class="w"> </span><span class="s1">&#39;pca&#39;</span>,<span class="w"> </span><span class="s1">&#39;rank_genes_groups&#39;</span>,<span class="w"> </span><span class="s1">&#39;umap&#39;</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span>obsm:<span class="w"> </span><span class="s1">&#39;X_glue&#39;</span>,<span class="w"> </span><span class="s1">&#39;X_lsi&#39;</span>,<span class="w"> </span><span class="s1">&#39;X_pca&#39;</span>,<span class="w"> </span><span class="s1">&#39;X_umap&#39;</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span>obsp:<span class="w"> </span><span class="s1">&#39;connectivities&#39;</span>,<span class="w"> </span><span class="s1">&#39;distances&#39;</span>
+</code></pre></div>
+<p>随后，我们定义了一个新的函数，用来计算阳性跟阴性的淋巴结之间的差异表达情况</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">scipy</span>  <span class="kn">import</span> <span class="n">stats</span><span class="p">,</span><span class="n">sparse</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">def</span> <span class="nf">scdeg</span><span class="p">(</span><span class="n">adata1</span><span class="p">,</span><span class="n">adata2</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="n">mean1</span><span class="o">=</span><span class="n">adata1</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="n">mean2</span><span class="o">=</span><span class="n">adata2</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">adata1</span><span class="o">.</span><span class="n">X</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="n">fold</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">adata1</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="n">adata2</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="c1">#fold=fold[0]</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="c1">#log2fold=np.log2(fold)</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="n">ttest</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">adata1</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span><span class="n">adata2</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+<span class="linenos" data-linenos="12 "></span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="n">fold</span><span class="o">=</span><span class="n">adata1</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="n">adata2</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span>        <span class="c1">#log2fold=np.log2(fold)</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="n">ttest</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">adata1</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">adata2</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="n">pvalue</span><span class="o">=</span><span class="n">ttest</span><span class="o">.</span><span class="n">pvalue</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span>    <span class="n">res</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">adata1</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span>    <span class="n">res</span><span class="p">[</span><span class="s1">&#39;log2FC&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">fold</span>
+<span class="linenos" data-linenos="20 "></span>    <span class="n">res</span><span class="p">[</span><span class="s1">&#39;pvalue&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pvalue</span>
+<span class="linenos" data-linenos="21 "></span>    <span class="k">return</span> <span class="n">res</span>
+<span class="linenos" data-linenos="22 "></span>
+<span class="linenos" data-linenos="23 "></span><span class="k">def</span> <span class="nf">scdeg_atac</span><span class="p">(</span><span class="n">adata1</span><span class="p">,</span><span class="n">adata2</span><span class="p">):</span>
+<span class="linenos" data-linenos="24 "></span>    <span class="n">mean1</span><span class="o">=</span><span class="n">adata1</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos="25 "></span>    <span class="n">mean2</span><span class="o">=</span><span class="n">adata2</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos="26 "></span>
+<span class="linenos" data-linenos="27 "></span>    <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">adata1</span><span class="o">.</span><span class="n">X</span><span class="p">):</span>
+<span class="linenos" data-linenos="28 "></span>        <span class="n">fold</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">adata1</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="n">adata2</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos" data-linenos="29 "></span>        <span class="c1">#fold=fold[0]</span>
+<span class="linenos" data-linenos="30 "></span>        <span class="n">log2fold</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">fold</span><span class="o">+</span><span class="mf">0.0000001</span><span class="p">)</span>
+<span class="linenos" data-linenos="31 "></span>        <span class="n">ttest</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">adata1</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span><span class="n">adata2</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+<span class="linenos" data-linenos="32 "></span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos" data-linenos="33 "></span>        <span class="n">fold</span><span class="o">=</span><span class="n">adata1</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="n">adata2</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos="34 "></span>        <span class="n">log2fold</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">fold</span><span class="o">+</span><span class="mf">0.0000001</span><span class="p">)</span>
+<span class="linenos" data-linenos="35 "></span>        <span class="n">ttest</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">adata1</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">adata2</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+<span class="linenos" data-linenos="36 "></span>    <span class="n">pvalue</span><span class="o">=</span><span class="n">ttest</span><span class="o">.</span><span class="n">pvalue</span>
+<span class="linenos" data-linenos="37 "></span>
+<span class="linenos" data-linenos="38 "></span>    <span class="n">res</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">adata1</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="linenos" data-linenos="39 "></span>    <span class="n">res</span><span class="p">[</span><span class="s1">&#39;log2FC&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">log2fold</span>
+<span class="linenos" data-linenos="40 "></span>    <span class="n">res</span><span class="p">[</span><span class="s1">&#39;pvalue&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pvalue</span>
+<span class="linenos" data-linenos="41 "></span>    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+<p>我们对rna数据进行预处理，注意，在这里，我们不对atac的活性矩阵数据进行预处理</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">#得到rna跟atac共有的基因集</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">ret_gene</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">rna</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">atac_act</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nb">len</span><span class="p">(</span><span class="n">ret_gene</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1">#筛选共有基因</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">deg_rna</span><span class="o">=</span><span class="n">rna</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">to_adata</span><span class="p">()[:,</span><span class="n">ret_gene</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">deg_atac_act</span><span class="o">=</span><span class="n">atac_act</span><span class="p">[:,</span><span class="n">ret_gene</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">deg_rna</span><span class="p">,</span><span class="n">deg_atac_act</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1">#rna预处理</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">normalize_total</span><span class="p">(</span><span class="n">deg_rna</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">deg_rna</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">deg_rna</span><span class="p">)</span>
+</code></pre></div>
+<p>我们首先研究B细胞总体的差异表达情况</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">b_cell_type</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="n">deg_r</span><span class="o">=</span><span class="n">scdeg</span><span class="p">(</span><span class="n">deg_rna</span><span class="p">[(</span><span class="n">deg_rna</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Pos&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">deg_rna</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">!=</span><span class="n">b_cell_type</span><span class="p">)],</span>
+<span class="linenos" data-linenos="4 "></span>            <span class="n">deg_rna</span><span class="p">[(</span><span class="n">deg_rna</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Neg&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">deg_rna</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">!=</span><span class="n">b_cell_type</span><span class="p">)])</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">deg_r</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="s1">&#39;-rna&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">deg_r</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="linenos" data-linenos="6 "></span>
+<span class="linenos" data-linenos="7 "></span><span class="n">deg_a</span><span class="o">=</span><span class="n">scdeg_atac</span><span class="p">(</span><span class="n">deg_atac_act</span><span class="p">[(</span><span class="n">deg_atac_act</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Pos&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">deg_atac_act</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">!=</span><span class="n">b_cell_type</span><span class="p">)],</span>
+<span class="linenos" data-linenos="8 "></span>            <span class="n">deg_atac_act</span><span class="p">[(</span><span class="n">deg_atac_act</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Neg&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">deg_atac_act</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">!=</span><span class="n">b_cell_type</span><span class="p">)])</span>
+<span class="linenos" data-linenos="9 "></span><span class="n">deg_a</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="s1">&#39;-atac&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">deg_a</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+</code></pre></div>
+<p>我们得到了<code>deg_r</code>与<code>deg_a</code>两个DataFrame，分别存储了相关的差异细胞类型，我们接着合并这两个DataFrame，用于后续的绘图</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">deg_b</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">deg_r</span><span class="p">,</span><span class="n">deg_a</span><span class="p">],</span><span class="n">join</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">]</span><span class="o">&lt;-</span><span class="mf">0.3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">]</span><span class="o">&lt;-</span><span class="mf">0.01</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;pvalue-rna&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;pvalue-atac&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">),</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;down-closed&#39;</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">0.3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">0.01</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;pvalue-rna&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;pvalue-atac&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">),</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;up-open&#39;</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">]</span><span class="o">&lt;-</span><span class="mf">0.3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">0.01</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;pvalue-rna&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;pvalue-atac&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">),</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;down-open&#39;</span>
+<span class="linenos" data-linenos="7 "></span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">0.3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">]</span><span class="o">&lt;-</span><span class="mf">0.01</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;pvalue-rna&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;pvalue-atac&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">),</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;up-closed&#39;</span>
+<span class="linenos" data-linenos="8 "></span>
+<span class="linenos" data-linenos="9 "></span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;normal&#39;</span><span class="p">]</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">log2FC-rna</th>
+<th align="right">pvalue-rna</th>
+<th align="right">log2FC-atac</th>
+<th align="right">pvalue-atac</th>
+<th align="right">sig</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">CD69</td>
+<td align="right">-0.481565</td>
+<td align="right">0.000000e+00</td>
+<td align="right">-0.414049</td>
+<td align="right">7.953599e-15</td>
+<td align="right">down-closed</td>
+</tr>
+<tr>
+<td align="right">DUSP1</td>
+<td align="right">-0.351880</td>
+<td align="right">8.813636e-31</td>
+<td align="right">-0.334110</td>
+<td align="right">4.529727e-15</td>
+<td align="right">down-closed</td>
+</tr>
+<tr>
+<td align="right">KLF6</td>
+<td align="right">-0.412127</td>
+<td align="right">8.021032e-42</td>
+<td align="right">-0.394257</td>
+<td align="right">1.385903e-16</td>
+<td align="right">down-closed</td>
+</tr>
+<tr>
+<td align="right">RGS1</td>
+<td align="right">-0.342126</td>
+<td align="right">3.633539e-29</td>
+<td align="right">-0.183141</td>
+<td align="right">3.073230e-02</td>
+<td align="right">down-closed</td>
+</tr>
+<tr>
+<td align="right">HSP90AA1</td>
+<td align="right">-0.530347</td>
+<td align="right">0.000000e+00</td>
+<td align="right">-0.333989</td>
+<td align="right">1.227807e-11</td>
+<td align="right">down-closed</td>
+</tr>
+<tr>
+<td align="right">NFKBIA</td>
+<td align="right">-0.409938</td>
+<td align="right">2.176217e-41</td>
+<td align="right">-0.218099</td>
+<td align="right">7.971724e-05</td>
+<td align="right">down-closed</td>
+</tr>
+<tr>
+<td align="right">JUNB</td>
+<td align="right">-0.335438</td>
+<td align="right">4.362629e-28</td>
+<td align="right">-0.257169</td>
+<td align="right">1.043540e-08</td>
+<td align="right">down-closed</td>
+</tr>
+</tbody>
+</table>
+<p>我们可以可视化一下这些差异表达基因在不同淋巴结中的分布情况</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">type_color</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="s1">&#39;Pos&#39;</span><span class="p">:</span><span class="s1">&#39;#9B7170&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span>    <span class="s1">&#39;Neg&#39;</span><span class="p">:</span><span class="s1">&#39;#C65A50&#39;</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="5 "></span><span class="c1">#在rna中</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">violin</span><span class="p">(</span><span class="n">deg_rna</span><span class="p">[</span><span class="n">deg_rna</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">!=</span><span class="n">b_cell_type</span><span class="p">],</span> 
+<span class="linenos" data-linenos="7 "></span>             <span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;normal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">groupby</span><span class="o">=</span><span class="s1">&#39;Type&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#C65A50&#39;</span><span class="p">,</span><span class="s1">&#39;#9B7170&#39;</span><span class="p">])</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-4.assets/image-20221019012328268-6120000.png" width="300" /></p>
+</figure>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">#在gene-activity中</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">violin</span><span class="p">(</span><span class="n">deg_atac_act</span><span class="p">[</span><span class="n">deg_atac_act</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">!=</span><span class="n">b_cell_type</span><span class="p">],</span> 
+<span class="linenos" data-linenos="3 "></span>             <span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;normal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> 
+<span class="linenos" data-linenos="4 "></span>             <span class="n">groupby</span><span class="o">=</span><span class="s1">&#39;Type&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#C65A50&#39;</span><span class="p">,</span><span class="s1">&#39;#9B7170&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="5 "></span>            <span class="n">title</span><span class="o">=</span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;normal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span><span class="n">stripplot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-4.assets/image-20221019012404062-6120003.png" width="300" /></p>
+</figure>
+<p>我们接下来绘制本小节最关键的图，差异表达图</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">adjustText</span> <span class="kn">import</span> <span class="n">adjust_text</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;normal&#39;</span><span class="p">][</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 4 "></span>            <span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;normal&#39;</span><span class="p">][</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 5 "></span>            <span class="n">s</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">deg_r</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;normal&#39;</span><span class="p">][</span><span class="s1">&#39;pvalue-rna&#39;</span><span class="p">]),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#4e6d89&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">.2</span><span class="p">,)</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;up-open&#39;</span><span class="p">][</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 8 "></span>            <span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;up-open&#39;</span><span class="p">][</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 9 "></span>            <span class="n">s</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">deg_r</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;up-open&#39;</span><span class="p">][</span><span class="s1">&#39;pvalue-rna&#39;</span><span class="p">]),</span><span class="n">color</span><span class="o">=</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span>
+<span class="linenos" data-linenos="10 "></span>           <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">edgecolors</span><span class="o">=</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;up-closed&#39;</span><span class="p">][</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="13 "></span>            <span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;up-closed&#39;</span><span class="p">][</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="14 "></span>            <span class="n">s</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">deg_r</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;up-closed&#39;</span><span class="p">][</span><span class="s1">&#39;pvalue-rna&#39;</span><span class="p">]),</span><span class="n">color</span><span class="o">=</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span>
+<span class="linenos" data-linenos="15 "></span>           <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">edgecolors</span><span class="o">=</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">15</span><span class="p">])</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;down-open&#39;</span><span class="p">][</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="18 "></span>            <span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;down-open&#39;</span><span class="p">][</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="19 "></span>            <span class="n">s</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">deg_r</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;down-open&#39;</span><span class="p">][</span><span class="s1">&#39;pvalue-rna&#39;</span><span class="p">]),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#5ca8dc&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="20 "></span>           <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;#4f61c7&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;down-closed&#39;</span><span class="p">][</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="23 "></span>            <span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;down-closed&#39;</span><span class="p">][</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="24 "></span>            <span class="n">s</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">deg_r</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;down-closed&#39;</span><span class="p">][</span><span class="s1">&#39;pvalue-rna&#39;</span><span class="p">]),</span><span class="n">color</span><span class="o">=</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span>
+<span class="linenos" data-linenos="25 "></span>           <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">edgecolors</span><span class="o">=</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
+<span class="linenos" data-linenos="26 "></span>
+<span class="linenos" data-linenos="27 "></span><span class="n">plot_index</span><span class="o">=</span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;normal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="linenos" data-linenos="28 "></span><span class="n">texts</span><span class="o">=</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">],</span><span class="n">deg_b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">],</span><span class="n">i</span>
+<span class="linenos" data-linenos="29 "></span>        <span class="p">,</span><span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="s1">&#39;bold&#39;</span><span class="p">})</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">plot_index</span><span class="p">[:</span><span class="mi">20</span><span class="p">]]</span>
+<span class="linenos" data-linenos="30 "></span>
+<span class="linenos" data-linenos="31 "></span><span class="n">adjust_text</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span><span class="n">only_move</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;xy&#39;</span><span class="p">},</span><span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">),)</span>
+<span class="linenos" data-linenos="32 "></span>
+<span class="linenos" data-linenos="33 "></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="linenos" data-linenos="34 "></span><span class="c1"># 去掉上、右二侧的边框线</span>
+<span class="linenos" data-linenos="35 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="36 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="37 "></span>
+<span class="linenos" data-linenos="38 "></span><span class="c1"># 将左侧的y轴，移到x=0的位置</span>
+<span class="linenos" data-linenos="39 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="linenos" data-linenos="40 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="linenos" data-linenos="41 "></span><span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos" data-linenos="42 "></span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="linenos" data-linenos="43 "></span>
+<span class="linenos" data-linenos="44 "></span>
+<span class="linenos" data-linenos="45 "></span>
+<span class="linenos" data-linenos="46 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">,</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="linenos" data-linenos="47 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">,</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="linenos" data-linenos="48 "></span>
+<span class="linenos" data-linenos="49 "></span><span class="n">plot_xmin</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mf">0.1</span>
+<span class="linenos" data-linenos="50 "></span><span class="n">plot_xmax</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-rna&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span>
+<span class="linenos" data-linenos="51 "></span><span class="n">plot_ymin</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mf">0.1</span>
+<span class="linenos" data-linenos="52 "></span><span class="n">plot_ymax</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">deg_b</span><span class="p">[</span><span class="s1">&#39;log2FC-atac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span>
+<span class="linenos" data-linenos="53 "></span>
+<span class="linenos" data-linenos="54 "></span><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">plot_xmin</span><span class="p">,</span><span class="n">plot_xmax</span><span class="p">)</span>
+<span class="linenos" data-linenos="55 "></span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">plot_ymin</span><span class="p">,</span><span class="n">plot_ymax</span><span class="p">)</span>
+<span class="linenos" data-linenos="56 "></span>
+<span class="linenos" data-linenos="57 "></span><span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">plot_ymax</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="linenos" data-linenos="58 "></span><span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">plot_xmax</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="linenos" data-linenos="59 "></span>
+<span class="linenos" data-linenos="60 "></span>
+<span class="linenos" data-linenos="61 "></span>
+<span class="linenos" data-linenos="62 "></span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="n">plot_ymin</span><span class="p">),</span>
+<span class="linenos" data-linenos="63 "></span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="64 "></span><span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span>
+<span class="linenos" data-linenos="65 "></span><span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="linenos" data-linenos="66 "></span>
+<span class="linenos" data-linenos="67 "></span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span><span class="n">plot_ymin</span><span class="p">),</span>
+<span class="linenos" data-linenos="68 "></span><span class="n">width</span><span class="o">=-</span><span class="mi">15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#177cb0&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="69 "></span><span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span>
+<span class="linenos" data-linenos="70 "></span><span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="linenos" data-linenos="71 "></span>
+<span class="linenos" data-linenos="72 "></span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;log2FC-ATAC&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<span class="linenos" data-linenos="73 "></span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;log2FC-RNA&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">130</span><span class="p">)</span>
+<span class="linenos" data-linenos="74 "></span><span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="n">plot_ymin</span><span class="p">,</span><span class="s1">&#39;&gt;0.25&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="75 "></span><span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span><span class="n">plot_ymin</span><span class="p">,</span><span class="s1">&#39;&lt;-0.25&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#177cb0&#39;</span><span class="p">,</span><span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="76 "></span>
+<span class="linenos" data-linenos="77 "></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;log2FC-RNA&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,)</span>
+<span class="linenos" data-linenos="78 "></span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;log2FC-ATAC&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,)</span>
+<span class="linenos" data-linenos="79 "></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;B cell&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span><span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="80 "></span>
+<span class="linenos" data-linenos="81 "></span><span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos" data-linenos="82 "></span><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos" data-linenos="83 "></span>
+<span class="linenos" data-linenos="84 "></span><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;deg/deg_</span><span class="si">{}</span><span class="s2">.png&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b_cell_type</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span> <span class="o">=</span> <span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-4.assets/image-20221019012503861-6120007.png" width="300" /></p>
+</figure>
+<p>我们可以使用同样的方法，绘制出其他5种不同的B细胞亚群的基因分布图</p>
+
+
+
+
+
+                
+
+  
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fc8c2696.min.js"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

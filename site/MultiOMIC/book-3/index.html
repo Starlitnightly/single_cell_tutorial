@@ -1,0 +1,1787 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../book-2/">
+      
+      
+        <link rel="next" href="../book-4/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
+    
+    
+      
+        <title>6-3. 细胞亚群分析 - Bioinformatic Tutorial (Daxing Research)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7bf56d0a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-header__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bioinformatic Tutorial (Daxing Research)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6-3. 细胞亚群分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-nav__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Bioinformatic Tutorial (Daxing Research)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        写在前面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          基础环境配置
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          基础环境配置
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_1/" class="md-nav__link">
+        配置1. Python环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_2/" class="md-nav__link">
+        配置2. Linux环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_3/" class="md-nav__link">
+        配置3. R语言环境
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          RNA-seq上游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq上游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_1/" class="md-nav__link">
+        1-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_2/" class="md-nav__link">
+        1-2. 上游分析全教程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          RNA-seq下游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq下游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_1/" class="md-nav__link">
+        2-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_2/" class="md-nav__link">
+        2-2. 差异表达基因(DEG)分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_3/" class="md-nav__link">
+        2-3. 通路富集分析(GSEA)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          单细胞样本对齐
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          单细胞样本对齐
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_1/" class="md-nav__link">
+        3-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_2/" class="md-nav__link">
+        3-2. 数据预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_3/" class="md-nav__link">
+        3-3. 模型准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_4/" class="md-nav__link">
+        3-4. 模型训练
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_5/" class="md-nav__link">
+        3-5. 对齐细胞
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MOFA单细胞多组学因子分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MOFA单细胞多组学因子分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_1/" class="md-nav__link">
+        4-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_2/" class="md-nav__link">
+        4-2. 单细胞样本对齐
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_3/" class="md-nav__link">
+        4-3. scRNA-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_4/" class="md-nav__link">
+        4-4. scATAC-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_5/" class="md-nav__link">
+        4-5. MOFA模型构建
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_6/" class="md-nav__link">
+        4-6. MOFA下游分析-R语言环节
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_7/" class="md-nav__link">
+        4-7. MOFA下游分析-Python环节
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          TMT蛋白组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          TMT蛋白组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_1/" class="md-nav__link">
+        5-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_2/" class="md-nav__link">
+        5-2. TMT蛋白组学上游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_3/" class="md-nav__link">
+        5-3. TMT蛋白组学下游分析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          多组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          多组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-1/" class="md-nav__link">
+        6-1. 数据准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-2/" class="md-nav__link">
+        6-2. GLUE多组学整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          6-3. 细胞亚群分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        6-3. 细胞亚群分析
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#4-" class="md-nav__link">
+    4. 细胞亚群分析-真实案例
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 细胞亚群分析-真实案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 细胞亚群分析
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-4/" class="md-nav__link">
+        6-4. 差异表达分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-5/" class="md-nav__link">
+        6-5. 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-6/" class="md-nav__link">
+        6-6. 动态调控分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../book-7/" class="md-nav__link">
+        6-7. 转录因子网络
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          Python可视化
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Python可视化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_1/" class="md-nav__link">
+        1-1. 火山图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_2/" class="md-nav__link">
+        1-2. 箱线图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_3/" class="md-nav__link">
+        1-3. 热图(聚类)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          视网膜母细胞瘤分析教程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          视网膜母细胞瘤分析教程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/rb_tutorial/" class="md-nav__link">
+        Base
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_1_preprocess/" class="md-nav__link">
+        教程1: 单细胞上游结果预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_2_filtered_qc/" class="md-nav__link">
+        教程2: 质量控制与过滤
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_3_glue/" class="md-nav__link">
+        教程3: scRNA-seq与scATAC-seq整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_4_scbasset/" class="md-nav__link">
+        教程4: Motif活性分数计算
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_5_analysis1/" class="md-nav__link">
+        教程5: 综合分析1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_6_analysis2/" class="md-nav__link">
+        教程6: 综合分析1-Chromatin activity和Motif score评估
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_7_STER_cell/" class="md-nav__link">
+        教程7: STER cell下游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_8_kineic_photo/" class="md-nav__link">
+        教程8: 转录动力学分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_9_cellphonedb/" class="md-nav__link">
+        教程9: 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#4-" class="md-nav__link">
+    4. 细胞亚群分析-真实案例
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 细胞亚群分析-真实案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 细胞亚群分析
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+  
+  
+
+
+  <h1>6-3. 细胞亚群分析</h1>
+
+<h2 id="4-">4. 细胞亚群分析-真实案例</h2>
+<p>在这里，我对B细胞亚群进行下游分析（基于乳腺癌淋巴结转移的B细胞数据）</p>
+<h3 id="41">4.1 细胞亚群分析</h3>
+<p>我们首先需要导入包，以及一些相关函数的准备</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">#导入包</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span> <span class="nn">anndata</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;anndata(Ver): &#39;</span><span class="p">,</span><span class="n">anndata</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;scanpy(Ver): &#39;</span><span class="p">,</span><span class="n">sc</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="kn">import</span> <span class="nn">scltnn</span> <span class="c1">#非必需</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;scltnn(Ver): &#39;</span><span class="p">,</span><span class="n">scltnn</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="linenos" data-linenos="10 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matplotlib(Ver): &#39;</span><span class="p">,</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos" data-linenos="12 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;seaborn(Ver): &#39;</span><span class="p">,</span><span class="n">sns</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos" data-linenos="14 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;numpy(Ver): &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos" data-linenos="16 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pandas(Ver): &#39;</span><span class="p">,</span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span><span class="kn">import</span> <span class="nn">scvelo</span> <span class="k">as</span> <span class="nn">scv</span>
+<span class="linenos" data-linenos="18 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;scvelo(Ver): &#39;</span><span class="p">,</span><span class="n">scv</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span><span class="kn">import</span> <span class="nn">Pyomic</span>
+<span class="linenos" data-linenos="20 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pyomic(Ver): &#39;</span><span class="p">,</span><span class="n">Pyomic</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="c1">#绘图参数设置</span>
+<span class="linenos" data-linenos="23 "></span><span class="n">sc</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="mi">3</span>             <span class="c1"># verbosity: errors (0), warnings (1), info (2), hints (3)</span>
+<span class="linenos" data-linenos="24 "></span><span class="n">sc</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">set_figure_params</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="n">sc_color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#7CBB5F&#39;</span><span class="p">,</span><span class="s1">&#39;#368650&#39;</span><span class="p">,</span><span class="s1">&#39;#A499CC&#39;</span><span class="p">,</span><span class="s1">&#39;#5E4D9A&#39;</span><span class="p">,</span><span class="s1">&#39;#78C2ED&#39;</span><span class="p">,</span><span class="s1">&#39;#866017&#39;</span><span class="p">,</span><span class="s1">&#39;#9F987F&#39;</span><span class="p">,</span> <span class="s1">&#39;#E0DFED&#39;</span><span class="p">,</span> <span class="s1">&#39;#EF7B77&#39;</span><span class="p">,</span> <span class="s1">&#39;#279AD7&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="27 "></span> <span class="s1">&#39;#F0EEF0&#39;</span><span class="p">,</span> <span class="s1">&#39;#1F577B&#39;</span><span class="p">,</span> <span class="s1">&#39;#A56BA7&#39;</span><span class="p">,</span> <span class="s1">&#39;#E0A7C8&#39;</span><span class="p">,</span> <span class="s1">&#39;#E069A6&#39;</span><span class="p">,</span> <span class="s1">&#39;#941456&#39;</span><span class="p">,</span> <span class="s1">&#39;#FCBC10&#39;</span><span class="p">,</span> <span class="s1">&#39;#EAEFC5&#39;</span><span class="p">,</span> <span class="s1">&#39;#01A0A7&#39;</span><span class="p">,</span> <span class="s1">&#39;#75C8CC&#39;</span><span class="p">,</span> 
+<span class="linenos" data-linenos="28 "></span><span class="s1">&#39;#F0D7BC&#39;</span><span class="p">,</span> <span class="s1">&#39;#D5B26C&#39;</span><span class="p">,</span> <span class="s1">&#39;#D5DA48&#39;</span><span class="p">,</span> <span class="s1">&#39;#B6B812&#39;</span><span class="p">,</span><span class="s1">&#39;#9DC3C3&#39;</span><span class="p">,</span> <span class="s1">&#39;#A89C92&#39;</span><span class="p">,</span> <span class="s1">&#39;#FEE00C&#39;</span><span class="p">,</span><span class="s1">&#39;#FEF2A1&#39;</span><span class="p">]</span>
+</code></pre></div>
+<p>紧接着，我们导入之前标注好细胞类型的rna.h5ad文件，并选取其中的B细胞</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">adata</span><span class="o">=</span><span class="n">sc</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;../cellanno/rna_anno.h5ad&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="c1">#筛选</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;major_celltype&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;B-cell&#39;</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>View<span class="w"> </span>of<span class="w"> </span>AnnData<span class="w"> </span>object<span class="w"> </span>with<span class="w"> </span>n_obs<span class="w"> </span>×<span class="w"> </span><span class="nv">n_vars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5899</span><span class="w"> </span>×<span class="w"> </span><span class="m">1945</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span>obs:<span class="w"> </span><span class="s1">&#39;Type&#39;</span>,<span class="w"> </span><span class="s1">&#39;initial_size_spliced&#39;</span>,<span class="w"> </span><span class="s1">&#39;initial_size_unspliced&#39;</span>,<span class="w"> </span><span class="s1">&#39;initial_size&#39;</span>,<span class="w"> </span><span class="s1">&#39;domain&#39;</span>,<span class="w"> </span><span class="s1">&#39;n_genes&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden&#39;</span>,<span class="w"> </span><span class="s1">&#39;n_counts&#39;</span>,<span class="w"> </span><span class="s1">&#39;major_celltype&#39;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span>var:<span class="w"> </span><span class="s1">&#39;gene_ids&#39;</span>,<span class="w"> </span><span class="s1">&#39;feature_types&#39;</span>,<span class="w"> </span><span class="s1">&#39;genome&#39;</span>,<span class="w"> </span><span class="s1">&#39;Accession&#39;</span>,<span class="w"> </span><span class="s1">&#39;Chromosome&#39;</span>,<span class="w"> </span><span class="s1">&#39;End&#39;</span>,<span class="w"> </span><span class="s1">&#39;Start&#39;</span>,<span class="w"> </span><span class="s1">&#39;Strand&#39;</span>,<span class="w"> </span><span class="s1">&#39;n_cells&#39;</span>,<span class="w"> </span><span class="s1">&#39;highly_variable&#39;</span>,<span class="w"> </span><span class="s1">&#39;highly_variable_rank&#39;</span>,<span class="w"> </span><span class="s1">&#39;means&#39;</span>,<span class="w"> </span><span class="s1">&#39;variances&#39;</span>,<span class="w"> </span><span class="s1">&#39;variances_norm&#39;</span>,<span class="w"> </span><span class="s1">&#39;mean&#39;</span>,<span class="w"> </span><span class="s1">&#39;std&#39;</span>,<span class="w"> </span><span class="s1">&#39;chrom&#39;</span>,<span class="w"> </span><span class="s1">&#39;chromStart&#39;</span>,<span class="w"> </span><span class="s1">&#39;chromEnd&#39;</span>,<span class="w"> </span><span class="s1">&#39;name&#39;</span>,<span class="w"> </span><span class="s1">&#39;score&#39;</span>,<span class="w"> </span><span class="s1">&#39;strand&#39;</span>,<span class="w"> </span><span class="s1">&#39;thickStart&#39;</span>,<span class="w"> </span><span class="s1">&#39;thickEnd&#39;</span>,<span class="w"> </span><span class="s1">&#39;itemRgb&#39;</span>,<span class="w"> </span><span class="s1">&#39;blockCount&#39;</span>,<span class="w"> </span><span class="s1">&#39;blockSizes&#39;</span>,<span class="w"> </span><span class="s1">&#39;blockStarts&#39;</span>,<span class="w"> </span><span class="s1">&#39;gene_id&#39;</span>,<span class="w"> </span><span class="s1">&#39;gene_type&#39;</span>,<span class="w"> </span><span class="s1">&#39;hgnc_id&#39;</span>,<span class="w"> </span><span class="s1">&#39;havana_gene&#39;</span>,<span class="w"> </span><span class="s1">&#39;tag&#39;</span>,<span class="w"> </span><span class="s1">&#39;dell&#39;</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span>uns:<span class="w"> </span><span class="s1">&#39;Type_colors&#39;</span>,<span class="w"> </span><span class="s1">&#39;dendrogram_leiden&#39;</span>,<span class="w"> </span><span class="s1">&#39;hvg&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden_colors&#39;</span>,<span class="w"> </span><span class="s1">&#39;leiden_sizes&#39;</span>,<span class="w"> </span><span class="s1">&#39;log1p&#39;</span>,<span class="w"> </span><span class="s1">&#39;major_celltype_colors&#39;</span>,<span class="w"> </span><span class="s1">&#39;neighbors&#39;</span>,<span class="w"> </span><span class="s1">&#39;paga&#39;</span>,<span class="w"> </span><span class="s1">&#39;pca&#39;</span>,<span class="w"> </span><span class="s1">&#39;rank_genes_groups&#39;</span>,<span class="w"> </span><span class="s1">&#39;umap&#39;</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span>obsm:<span class="w"> </span><span class="s1">&#39;X_glue&#39;</span>,<span class="w"> </span><span class="s1">&#39;X_pca&#39;</span>,<span class="w"> </span><span class="s1">&#39;X_umap&#39;</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span>varm:<span class="w"> </span><span class="s1">&#39;PCs&#39;</span>,<span class="w"> </span><span class="s1">&#39;X_glue&#39;</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span>layers:<span class="w"> </span><span class="s1">&#39;Ms&#39;</span>,<span class="w"> </span><span class="s1">&#39;Mu&#39;</span>,<span class="w"> </span><span class="s1">&#39;ambiguous&#39;</span>,<span class="w"> </span><span class="s1">&#39;counts&#39;</span>,<span class="w"> </span><span class="s1">&#39;matrix&#39;</span>,<span class="w"> </span><span class="s1">&#39;spliced&#39;</span>,<span class="w"> </span><span class="s1">&#39;unspliced&#39;</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span>obsp:<span class="w"> </span><span class="s1">&#39;connectivities&#39;</span>,<span class="w"> </span><span class="s1">&#39;distances&#39;</span>
+</code></pre></div>
+<p>我们对数据重新分类别，提取其中的B细胞亚群</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">pca</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">n_comps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s2">&quot;arpack&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="s2">&quot;X_glue&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;cosine&quot;</span><span class="p">,</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">112</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">paga</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">paga</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># remove `plot=False` if you want to see the coarse-grained graph</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">umap</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span><span class="n">init_pos</span><span class="o">=</span><span class="s1">&#39;paga&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="7 "></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">umap</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;leiden&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>输出结果</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>computing<span class="w"> </span>PCA
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span>on<span class="w"> </span>highly<span class="w"> </span>variable<span class="w"> </span>genes
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span>with<span class="w"> </span><span class="nv">n_comps</span><span class="o">=</span><span class="m">100</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span>finished<span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:01<span class="o">)</span>
+<span class="linenos" data-linenos=" 5 "></span>computing<span class="w"> </span>neighbors
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span>finished:<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span><span class="sb">`</span>.uns<span class="o">[</span><span class="s1">&#39;neighbors&#39;</span><span class="o">]</span><span class="sb">`</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="sb">`</span>.obsp<span class="o">[</span><span class="s1">&#39;distances&#39;</span><span class="o">]</span><span class="sb">`</span>,<span class="w"> </span>distances<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>pair<span class="w"> </span>of<span class="w"> </span>neighbors
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="sb">`</span>.obsp<span class="o">[</span><span class="s1">&#39;connectivities&#39;</span><span class="o">]</span><span class="sb">`</span>,<span class="w"> </span>weighted<span class="w"> </span>adjacency<span class="w"> </span>matrix<span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:00<span class="o">)</span>
+<span class="linenos" data-linenos=" 9 "></span>running<span class="w"> </span>Leiden<span class="w"> </span>clustering
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span>finished:<span class="w"> </span>found<span class="w"> </span><span class="m">13</span><span class="w"> </span>clusters<span class="w"> </span>and<span class="w"> </span>added
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="s1">&#39;leiden&#39;</span>,<span class="w"> </span>the<span class="w"> </span>cluster<span class="w"> </span>labels<span class="w"> </span><span class="o">(</span>adata.obs,<span class="w"> </span>categorical<span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:00<span class="o">)</span>
+<span class="linenos" data-linenos="12 "></span>running<span class="w"> </span>PAGA
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span>finished:<span class="w"> </span>added
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="s1">&#39;paga/connectivities&#39;</span>,<span class="w"> </span>connectivities<span class="w"> </span>adjacency<span class="w"> </span><span class="o">(</span>adata.uns<span class="o">)</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="s1">&#39;paga/connectivities_tree&#39;</span>,<span class="w"> </span>connectivities<span class="w"> </span>subtree<span class="w"> </span><span class="o">(</span>adata.uns<span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:00<span class="o">)</span>
+<span class="linenos" data-linenos="16 "></span>--&gt;<span class="w"> </span>added<span class="w"> </span><span class="s1">&#39;pos&#39;</span>,<span class="w"> </span>the<span class="w"> </span>PAGA<span class="w"> </span>positions<span class="w"> </span><span class="o">(</span>adata.uns<span class="o">[</span><span class="s1">&#39;paga&#39;</span><span class="o">])</span>
+<span class="linenos" data-linenos="17 "></span>computing<span class="w"> </span>UMAP
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span>finished:<span class="w"> </span>added
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="s1">&#39;X_umap&#39;</span>,<span class="w"> </span>UMAP<span class="w"> </span>coordinates<span class="w"> </span><span class="o">(</span>adata.obsm<span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:05<span class="o">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-3.assets/image-20221019004245874-6119960.png" width="300" /></p>
+</figure>
+<p>我们接着构建velocity的动态调控过程网</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">scv</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">recover_dynamics</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">scv</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;dynamical&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">scv</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">velocity_graph</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">scv</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">velocity_embedding_stream</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s1">&#39;umap&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;major_celltype&#39;</span><span class="p">,</span><span class="s1">&#39;leiden&#39;</span><span class="p">,</span><span class="s1">&#39;Type&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>输出结果</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>recovering<span class="w"> </span>dynamics<span class="w"> </span><span class="o">(</span>using<span class="w"> </span><span class="m">6</span>/8<span class="w"> </span>cores<span class="o">)</span>
+<span class="linenos" data-linenos=" 2 "></span>Error<span class="w"> </span>displaying<span class="w"> </span>widget:<span class="w"> </span>model<span class="w"> </span>not<span class="w"> </span>found
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span>finished<span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:13<span class="o">)</span><span class="w"> </span>--&gt;<span class="w"> </span>added<span class="w"> </span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="s1">&#39;fit_pars&#39;</span>,<span class="w"> </span>fitted<span class="w"> </span>parameters<span class="w"> </span><span class="k">for</span><span class="w"> </span>splicing<span class="w"> </span>dynamics<span class="w"> </span><span class="o">(</span>adata.var<span class="o">)</span>
+<span class="linenos" data-linenos=" 5 "></span>computing<span class="w"> </span>velocities
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span>finished<span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:00<span class="o">)</span><span class="w"> </span>--&gt;<span class="w"> </span>added<span class="w"> </span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="s1">&#39;velocity&#39;</span>,<span class="w"> </span>velocity<span class="w"> </span>vectors<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>individual<span class="w"> </span>cell<span class="w"> </span><span class="o">(</span>adata.layers<span class="o">)</span>
+<span class="linenos" data-linenos=" 8 "></span>computing<span class="w"> </span>velocity<span class="w"> </span>graph<span class="w"> </span><span class="o">(</span>using<span class="w"> </span><span class="m">1</span>/8<span class="w"> </span>cores<span class="o">)</span>
+<span class="linenos" data-linenos=" 9 "></span>Error<span class="w"> </span>displaying<span class="w"> </span>widget:<span class="w"> </span>model<span class="w"> </span>not<span class="w"> </span>found
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span>finished<span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:01<span class="o">)</span><span class="w"> </span>--&gt;<span class="w"> </span>added<span class="w"> </span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="s1">&#39;velocity_graph&#39;</span>,<span class="w"> </span>sparse<span class="w"> </span>matrix<span class="w"> </span>with<span class="w"> </span>cosine<span class="w"> </span>correlations<span class="w"> </span><span class="o">(</span>adata.uns<span class="o">)</span>
+<span class="linenos" data-linenos="12 "></span>computing<span class="w"> </span>velocity<span class="w"> </span>embedding
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span>finished<span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:00<span class="o">)</span><span class="w"> </span>--&gt;<span class="w"> </span>added
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="s1">&#39;velocity_umap&#39;</span>,<span class="w"> </span>embedded<span class="w"> </span>velocity<span class="w"> </span>vectors<span class="w"> </span><span class="o">(</span>adata.obsm<span class="o">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-3.assets/image-20221019004442469-6119965.png" width="300" /></p>
+</figure>
+<p>我们接着计算拟时序</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">scv</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">latent_time</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">scv</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;latent_time&#39;</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</code></pre></div>
+<p>输出结果</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>computing<span class="w"> </span>terminal<span class="w"> </span>states
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span>identified<span class="w"> </span><span class="m">4</span><span class="w"> </span>regions<span class="w"> </span>of<span class="w"> </span>root<span class="w"> </span>cells<span class="w"> </span>and<span class="w"> </span><span class="m">1</span><span class="w"> </span>region<span class="w"> </span>of<span class="w"> </span>end<span class="w"> </span>points<span class="w"> </span>.
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span>finished<span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:00<span class="o">)</span><span class="w"> </span>--&gt;<span class="w"> </span>added
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="s1">&#39;root_cells&#39;</span>,<span class="w"> </span>root<span class="w"> </span>cells<span class="w"> </span>of<span class="w"> </span>Markov<span class="w"> </span>diffusion<span class="w"> </span>process<span class="w"> </span><span class="o">(</span>adata.obs<span class="o">)</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="s1">&#39;end_points&#39;</span>,<span class="w"> </span>end<span class="w"> </span>points<span class="w"> </span>of<span class="w"> </span>Markov<span class="w"> </span>diffusion<span class="w"> </span>process<span class="w"> </span><span class="o">(</span>adata.obs<span class="o">)</span>
+<span class="linenos" data-linenos="6 "></span>computing<span class="w"> </span>latent<span class="w"> </span><span class="nb">time</span><span class="w"> </span>using<span class="w"> </span>root_cells<span class="w"> </span>as<span class="w"> </span>prior
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span>finished<span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:00<span class="o">)</span><span class="w"> </span>--&gt;<span class="w"> </span>added<span class="w"> </span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="s1">&#39;latent_time&#39;</span>,<span class="w"> </span>shared<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>adata.obs<span class="o">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-3.assets/image-20221019004556158-6119968.png" width="300" /></p>
+</figure>
+<p>然后，我们使用B细胞的字典，来对B细胞的细胞类型进行标注，并且使用t-test找出每一类leiden的marker基因用于辅助注释</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">#B细胞字典</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">res_marker_dict</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="s1">&#39;naïve B cell&#39;</span><span class="p">:[</span><span class="s1">&#39;IGHD&#39;</span><span class="p">,</span> <span class="s1">&#39;FCER2&#39;</span><span class="p">,</span> <span class="s1">&#39;TCL1A&#39;</span><span class="p">,</span> <span class="s1">&#39;IL4R&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="s1">&#39;memory B cell&#39;</span><span class="p">:[</span><span class="s1">&#39;CD27&#39;</span><span class="p">,</span><span class="s1">&#39;AIM2&#39;</span><span class="p">,</span><span class="s1">&#39;TNFRSF13B&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="s1">&#39;Pre-B cell&#39;</span><span class="p">:[</span><span class="s1">&#39;TMSB4X&#39;</span><span class="p">,</span><span class="s1">&#39;TMSB10&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="s1">&#39;Breg&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;CD24&#39;</span><span class="p">,</span><span class="s1">&#39;CD27&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="s1">&#39;(GC) B cell&#39;</span><span class="p">:[</span> <span class="s1">&#39;SUGCT&#39;</span><span class="p">,</span> <span class="s1">&#39;MME&#39;</span><span class="p">,</span> <span class="s1">&#39;MKI67&#39;</span><span class="p">,</span> <span class="s1">&#39;AICDA&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="s1">&#39;IgG plasma cell&#39;</span><span class="p">:[</span><span class="s1">&#39;JCHAIN&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="s1">&#39;IgA plasma cell&#39;</span><span class="p">:[</span><span class="s1">&#39;CD38&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="s1">&#39;Follicular B Cell&#39;</span><span class="p">:[</span><span class="s1">&#39;CD69&#39;</span><span class="p">,</span><span class="s1">&#39;CD83&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="s1">&#39;activated B cells&#39;</span><span class="p">:[</span><span class="s1">&#39;IGHA1&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="12 "></span>    <span class="s1">&#39;Test&#39;</span><span class="p">:[</span><span class="s1">&#39;SPN&#39;</span><span class="p">,</span><span class="s1">&#39;MALAT1&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span><span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span><span class="s1">&#39;leiden&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">dotplot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">res_marker_dict</span><span class="p">,</span> <span class="s1">&#39;leiden&#39;</span><span class="p">,</span> <span class="n">dendrogram</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">standard_scale</span><span class="o">=</span><span class="s1">&#39;var&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>输出结果</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span>using<span class="w"> </span><span class="s1">&#39;X_pca&#39;</span><span class="w"> </span>with<span class="w"> </span><span class="nv">n_pcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+<span class="linenos" data-linenos="2 "></span>Storing<span class="w"> </span>dendrogram<span class="w"> </span>info<span class="w"> </span>using<span class="w"> </span><span class="sb">`</span>.uns<span class="o">[</span><span class="s1">&#39;dendrogram_leiden&#39;</span><span class="o">]</span><span class="sb">`</span>
+<span class="linenos" data-linenos="3 "></span>WARNING:<span class="w"> </span>Groups<span class="w"> </span>are<span class="w"> </span>not<span class="w"> </span>reordered<span class="w"> </span>because<span class="w"> </span>the<span class="w"> </span><span class="sb">`</span>groupby<span class="sb">`</span><span class="w"> </span>categories<span class="w"> </span>and<span class="w"> </span>the<span class="w"> </span><span class="sb">`</span>var_group_labels<span class="sb">`</span><span class="w"> </span>are<span class="w"> </span>different.
+<span class="linenos" data-linenos="4 "></span>categories:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>etc.
+<span class="linenos" data-linenos="5 "></span>var_group_labels:<span class="w"> </span>naïve<span class="w"> </span>B<span class="w"> </span>cell,<span class="w"> </span>memory<span class="w"> </span>B<span class="w"> </span>cell,<span class="w"> </span>Pre-B<span class="w"> </span>cell,<span class="w"> </span>etc.
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-3.assets/image-20221019004807328-6119971.png" width="300" /></p>
+</figure>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">#注意，这里也可以使用cosg来寻找marker基因</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;log1p&#39;</span><span class="p">][</span><span class="s1">&#39;base&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">rank_genes_groups</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="s1">&#39;leiden&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;t-test&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">rank_genes_groups_dotplot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span><span class="n">groupby</span><span class="o">=</span><span class="s1">&#39;leiden&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>                                <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Spectral_r&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="6 "></span>                                <span class="n">standard_scale</span><span class="o">=</span><span class="s1">&#39;var&#39;</span><span class="p">,</span><span class="n">n_genes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+<p>输出结果</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>ranking<span class="w"> </span>genes
+<span class="linenos" data-linenos="2 "></span>WARNING:<span class="w"> </span>It<span class="w"> </span>seems<span class="w"> </span>you<span class="w"> </span>use<span class="w"> </span>rank_genes_groups<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>raw<span class="w"> </span>count<span class="w"> </span>data.<span class="w"> </span>Please<span class="w"> </span>logarithmize<span class="w"> </span>your<span class="w"> </span>data<span class="w"> </span>before<span class="w"> </span>calling<span class="w"> </span>rank_genes_groups.
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span>finished<span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:00<span class="o">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-3.assets/image-20221019004930306-6119974.png" width="300" /></p>
+</figure>
+<p>最后，我们标注leiden对应的细胞类型，并上色</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">#leiden对应的细胞类型标注</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">cluster2annotation</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>     <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39;activated B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 4 "></span>     <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;naïve B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span>     <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="s1">&#39;Pre-B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 6 "></span>     <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="s1">&#39;B-cell (MALAT1+)&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 7 "></span>     <span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="s1">&#39;activated B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span>     <span class="s1">&#39;5&#39;</span><span class="p">:</span> <span class="s1">&#39;Pre-B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 9 "></span>     <span class="s1">&#39;6&#39;</span><span class="p">:</span> <span class="s1">&#39;naïve B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="10 "></span>     <span class="s1">&#39;7&#39;</span><span class="p">:</span> <span class="s1">&#39;activated B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="11 "></span>     <span class="s1">&#39;8&#39;</span><span class="p">:</span> <span class="s1">&#39;naïve B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="12 "></span>     <span class="s1">&#39;9&#39;</span><span class="p">:</span> <span class="s1">&#39;Pre-B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="13 "></span>     <span class="s1">&#39;10&#39;</span><span class="p">:</span> <span class="s1">&#39;Pre-B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="14 "></span>     <span class="s1">&#39;11&#39;</span><span class="p">:</span> <span class="s1">&#39;naïve B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="15 "></span>     <span class="s1">&#39;12&#39;</span><span class="p">:</span> <span class="s1">&#39;Plasma B cells&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="16 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">cluster2annotation</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span><span class="c1">#上色</span>
+<span class="linenos" data-linenos="20 "></span><span class="n">type_color_B</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos" data-linenos="21 "></span>    <span class="s1">&#39;naïve B cells&#39;</span><span class="p">:</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span>
+<span class="linenos" data-linenos="22 "></span>    <span class="s1">&#39;Follicular B cells&#39;</span><span class="p">:</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">20</span><span class="p">],</span>
+<span class="linenos" data-linenos="23 "></span>    <span class="s1">&#39;Pre-B cells&#39;</span><span class="p">:</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span>
+<span class="linenos" data-linenos="24 "></span>    <span class="s1">&#39;activated B cells&#39;</span><span class="p">:</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span>
+<span class="linenos" data-linenos="25 "></span>    <span class="s1">&#39;IgA+ Plasma B cells&#39;</span><span class="p">:</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span>
+<span class="linenos" data-linenos="26 "></span>    <span class="s1">&#39;IgG+ Plasma B cells&#39;</span><span class="p">:</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span>
+<span class="linenos" data-linenos="27 "></span>    <span class="s1">&#39;Plasma B cells&#39;</span><span class="p">:</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span>
+<span class="linenos" data-linenos="28 "></span>    <span class="s1">&#39;B-cell&#39;</span><span class="p">:</span><span class="n">sc_color</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span>
+<span class="linenos" data-linenos="29 "></span>    <span class="s1">&#39;B-cell (MALAT1+)&#39;</span><span class="p">:</span><span class="s1">&#39;#a3007d&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="30 "></span>
+<span class="linenos" data-linenos="31 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="32 "></span><span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;B_celltype_colors&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">type_color_B</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="linenos" data-linenos="33 "></span>
+<span class="linenos" data-linenos="34 "></span><span class="c1">#绘制效果</span>
+<span class="linenos" data-linenos="35 "></span><span class="n">ax</span><span class="o">=</span><span class="n">scv</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">velocity_embedding_stream</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s1">&#39;umap&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;major_celltype&#39;</span><span class="p">,</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">,</span><span class="s1">&#39;Type&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="36 "></span>                                <span class="n">legend_align_text</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,)</span>
+<span class="linenos" data-linenos="37 "></span><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;prop/cell_type.png&quot;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span> <span class="o">=</span> <span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-3.assets/image-20221019005115998-6119977.png" width="300" /></p>
+</figure>
+<p>然后，为了分析阴性淋巴结跟阳性淋巴结的细胞比例差异，我们计算了两种淋巴结中的细胞比例</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">#阳性淋巴结</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">#mpl.rcParams[&#39;font.sans-serif&#39;]=[&#39;SimHei&#39;]</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1">#mpl.rcParams[&#39;axes.unicode_minus&#39;]=False</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">labels</span><span class="o">=</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Pos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Pos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">))</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">data</span><span class="o">=</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Pos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Pos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">))</span><span class="o">.</span><span class="n">values</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">b_color</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">labels</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">type_color_B</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">explodes</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)]</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> 
+<span class="linenos" data-linenos="13 "></span><span class="c1">#plt.axes(aspect=0.5)</span>
+<span class="linenos" data-linenos="14 "></span><span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span><span class="n">autopct</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%0.1f%%</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">labeldistance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="n">explode</span><span class="o">=</span><span class="n">explodes</span><span class="p">,</span><span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="n">b_color</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Pos Lym&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;prop/pos_prop.png&quot;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span> <span class="o">=</span> <span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-3.assets/image-20221019005254018-6119981.png" width="300" /></p>
+</figure>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">#阴性淋巴结</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">labels</span><span class="o">=</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Neg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Neg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">))</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1">#labels=[i for i in [&#39; &#39;]*5]</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">data</span><span class="o">=</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Neg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Neg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">))</span><span class="o">.</span><span class="n">values</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">b_color</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">labels</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">type_color_B</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">explodes</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)]</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> 
+<span class="linenos" data-linenos="12 "></span><span class="c1">#plt.axes(aspect=0.5)</span>
+<span class="linenos" data-linenos="13 "></span><span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span><span class="n">autopct</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%0.1f%%</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">labeldistance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="linenos" data-linenos="14 "></span>        <span class="n">explode</span><span class="o">=</span><span class="n">explodes</span><span class="p">,</span><span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="n">b_color</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.8</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Neg Lym&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span><span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;prop/neg_prop.png&quot;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span> <span class="o">=</span> <span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-3.assets/image-20221019005328419-6119984.png" width="300" /></p>
+</figure>
+<p>除了使用扇形图外，我们还能用柱状图更加直观的感受细胞类型的比例，我们先构建一个pandas表格用于绘制柱状图</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">prop_pd1</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">])))</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">prop_pd1</span><span class="p">[</span><span class="s1">&#39;Cell&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">prop_pd1</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">prop_pd1</span><span class="p">[</span><span class="s1">&#39;Values&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">prop_pd1</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;Neg&#39;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">data</span><span class="o">=</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Neg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Neg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">))</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">prop_pd1</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span><span class="s1">&#39;Values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">prop_pd2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">])))</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">prop_pd2</span><span class="p">[</span><span class="s1">&#39;Cell&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">prop_pd2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">prop_pd2</span><span class="p">[</span><span class="s1">&#39;Values&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+<span class="linenos" data-linenos="12 "></span><span class="n">prop_pd2</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;Pos&#39;</span>
+<span class="linenos" data-linenos="13 "></span><span class="n">data</span><span class="o">=</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Pos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Pos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">))</span>
+<span class="linenos" data-linenos="14 "></span><span class="n">prop_pd2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span><span class="s1">&#39;Values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="n">prop_pd</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">prop_pd1</span><span class="p">,</span><span class="n">prop_pd2</span><span class="p">])</span>
+<span class="linenos" data-linenos="17 "></span><span class="n">prop_pd</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prop_pd</span><span class="p">))</span>
+<span class="linenos" data-linenos="18 "></span><span class="n">prop_pd</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">Cell</th>
+<th align="right">Values</th>
+<th align="right">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="right">B-cell (MALAT1+)</td>
+<td align="right">0.13</td>
+<td align="right">Neg</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">Pre-B cells</td>
+<td align="right">0.27</td>
+<td align="right">Neg</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">naïve B cells</td>
+<td align="right">0.21</td>
+<td align="right">Neg</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">Plasma B cells</td>
+<td align="right">0.01</td>
+<td align="right">Neg</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">activated B cells</td>
+<td align="right">0.38</td>
+<td align="right">Neg</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="right">B-cell (MALAT1+)</td>
+<td align="right">0.06</td>
+<td align="right">Pos</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="right">Pre-B cells</td>
+<td align="right">0.37</td>
+<td align="right">Pos</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td align="right">naïve B cells</td>
+<td align="right">0.40</td>
+<td align="right">Pos</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td align="right">Plasma B cells</td>
+<td align="right">0.00</td>
+<td align="right">Pos</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td align="right">activated B cells</td>
+<td align="right">0.16</td>
+<td align="right">Pos</td>
+</tr>
+</tbody>
+</table>
+<p>随后我们分别为Neg与Pos指定颜色后绘制柱状图</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">type_color</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>    <span class="s1">&#39;Pos&#39;</span><span class="p">:</span><span class="s1">&#39;#9B7170&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="s1">&#39;Neg&#39;</span><span class="p">:</span><span class="s1">&#39;#C65A50&#39;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span> 
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="n">data</span><span class="o">=</span><span class="n">prop_pd</span><span class="p">,</span> 
+<span class="linenos" data-linenos="10 "></span>    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Values&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Cell&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="n">type_color</span><span class="p">[</span><span class="s1">&#39;Neg&#39;</span><span class="p">],</span><span class="n">type_color</span><span class="p">[</span><span class="s1">&#39;Pos&#39;</span><span class="p">]]</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">containers</span><span class="p">:</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="n">ax</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">i</span><span class="p">,)</span>
+<span class="linenos" data-linenos="15 "></span><span class="n">sns</span><span class="o">.</span><span class="n">move_legend</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;upper left&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;prop/prop.png&quot;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span> <span class="o">=</span> <span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-3.assets/image-20221019005554337-6119988.png" width="300" /></p>
+</figure>
+<p>除此之外，我们还可以分析细胞亚群的演变过程</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">scv</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">paga</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="s1">&#39;B_celltype&#39;</span><span class="p">,</span><span class="n">use_time_prior</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">scv</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">paga</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s1">&#39;umap&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span>            <span class="n">min_edge_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">node_size_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+</code></pre></div>
+<p>输出结果</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>running<span class="w"> </span>PAGA<span class="w"> </span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span>finished<span class="w"> </span><span class="o">(</span><span class="m">0</span>:00:00<span class="o">)</span><span class="w"> </span>--&gt;<span class="w"> </span>added
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="s1">&#39;paga/connectivities&#39;</span>,<span class="w"> </span>connectivities<span class="w"> </span>adjacency<span class="w"> </span><span class="o">(</span>adata.uns<span class="o">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="s1">&#39;paga/connectivities_tree&#39;</span>,<span class="w"> </span>connectivities<span class="w"> </span>subtree<span class="w"> </span><span class="o">(</span>adata.uns<span class="o">)</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="s1">&#39;paga/transitions_confidence&#39;</span>,<span class="w"> </span>velocity<span class="w"> </span>transitions<span class="w"> </span><span class="o">(</span>adata.uns<span class="o">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../book-3.assets/image-20221019005740026-6119990.png" width="300" /></p>
+</figure>
+<p>到此，细胞亚群注释及相关的图表，我们就绘制完成了，我们保存一下</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;B_cell_anno_new.h5ad&#39;</span><span class="p">,</span><span class="n">compression</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+
+
+                
+
+  
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fc8c2696.min.js"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

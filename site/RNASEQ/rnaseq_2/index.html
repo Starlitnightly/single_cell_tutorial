@@ -1,0 +1,2341 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../rnaseq_1/">
+      
+      
+        <link rel="next" href="../rnaseq_3/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
+    
+    
+      
+        <title>2-2. 差异表达基因(DEG)分析 - Bioinformatic Tutorial (Daxing Research)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7bf56d0a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rna-seq-deg" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-header__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bioinformatic Tutorial (Daxing Research)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2-2. 差异表达基因(DEG)分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-nav__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Bioinformatic Tutorial (Daxing Research)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        写在前面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          基础环境配置
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          基础环境配置
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_1/" class="md-nav__link">
+        配置1. Python环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_2/" class="md-nav__link">
+        配置2. Linux环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_3/" class="md-nav__link">
+        配置3. R语言环境
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          RNA-seq上游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq上游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_1/" class="md-nav__link">
+        1-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_2/" class="md-nav__link">
+        1-2. 上游分析全教程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          RNA-seq下游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq下游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rnaseq_1/" class="md-nav__link">
+        2-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          2-2. 差异表达基因(DEG)分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        2-2. 差异表达基因(DEG)分析
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 差异表达基因提取
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 差异表达基因提取">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 数据准备
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-deseq2" class="md-nav__link">
+    1.2 加载DESeq2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 差异表达分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    1.5 提取差异表达分析结果
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-id" class="md-nav__link">
+    2. 基因id转换
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 基因id转换">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 导入包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-id" class="md-nav__link">
+    2.3 基因id查询
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-id" class="md-nav__link">
+    2.4 基因id转换
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 基因id转换">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#241-idlist" class="md-nav__link">
+    2.4.1 构造待转换基因id的list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#242-id" class="md-nav__link">
+    2.4.2 对差异表达矩阵的基因id更新
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 差异基因可视化
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 差异基因可视化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 差异表达倍数选取
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 差异表达基因标记
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 差异表达基因可视化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 差异表达热图
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 差异表达热图">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-counts" class="md-nav__link">
+    4.2 提取差异表达基因的原始counts矩阵
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    4.3 可视化
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 可视化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#431" class="md-nav__link">
+    4.3.1 数据准备
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#432" class="md-nav__link">
+    4.3.2 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#433" class="md-nav__link">
+    4.3.3 热图
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rnaseq_3/" class="md-nav__link">
+        2-3. 通路富集分析(GSEA)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          单细胞样本对齐
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          单细胞样本对齐
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_1/" class="md-nav__link">
+        3-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_2/" class="md-nav__link">
+        3-2. 数据预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_3/" class="md-nav__link">
+        3-3. 模型准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_4/" class="md-nav__link">
+        3-4. 模型训练
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_5/" class="md-nav__link">
+        3-5. 对齐细胞
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MOFA单细胞多组学因子分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MOFA单细胞多组学因子分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_1/" class="md-nav__link">
+        4-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_2/" class="md-nav__link">
+        4-2. 单细胞样本对齐
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_3/" class="md-nav__link">
+        4-3. scRNA-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_4/" class="md-nav__link">
+        4-4. scATAC-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_5/" class="md-nav__link">
+        4-5. MOFA模型构建
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_6/" class="md-nav__link">
+        4-6. MOFA下游分析-R语言环节
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_7/" class="md-nav__link">
+        4-7. MOFA下游分析-Python环节
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          TMT蛋白组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          TMT蛋白组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_1/" class="md-nav__link">
+        5-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_2/" class="md-nav__link">
+        5-2. TMT蛋白组学上游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_3/" class="md-nav__link">
+        5-3. TMT蛋白组学下游分析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          多组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          多组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-1/" class="md-nav__link">
+        6-1. 数据准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-2/" class="md-nav__link">
+        6-2. GLUE多组学整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-3/" class="md-nav__link">
+        6-3. 细胞亚群分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-4/" class="md-nav__link">
+        6-4. 差异表达分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-5/" class="md-nav__link">
+        6-5. 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-6/" class="md-nav__link">
+        6-6. 动态调控分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-7/" class="md-nav__link">
+        6-7. 转录因子网络
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          Python可视化
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Python可视化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_1/" class="md-nav__link">
+        1-1. 火山图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_2/" class="md-nav__link">
+        1-2. 箱线图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLOT/plot_3/" class="md-nav__link">
+        1-3. 热图(聚类)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          视网膜母细胞瘤分析教程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          视网膜母细胞瘤分析教程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/rb_tutorial/" class="md-nav__link">
+        Base
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_1_preprocess/" class="md-nav__link">
+        教程1: 单细胞上游结果预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_2_filtered_qc/" class="md-nav__link">
+        教程2: 质量控制与过滤
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_3_glue/" class="md-nav__link">
+        教程3: scRNA-seq与scATAC-seq整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_4_scbasset/" class="md-nav__link">
+        教程4: Motif活性分数计算
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_5_analysis1/" class="md-nav__link">
+        教程5: 综合分析1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_6_analysis2/" class="md-nav__link">
+        教程6: 综合分析1-Chromatin activity和Motif score评估
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_7_STER_cell/" class="md-nav__link">
+        教程7: STER cell下游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_8_kineic_photo/" class="md-nav__link">
+        教程8: 转录动力学分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_9_cellphonedb/" class="md-nav__link">
+        教程9: 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 差异表达基因提取
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 差异表达基因提取">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 数据准备
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-deseq2" class="md-nav__link">
+    1.2 加载DESeq2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 差异表达分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    1.5 提取差异表达分析结果
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-id" class="md-nav__link">
+    2. 基因id转换
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 基因id转换">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 导入包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-id" class="md-nav__link">
+    2.3 基因id查询
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-id" class="md-nav__link">
+    2.4 基因id转换
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 基因id转换">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#241-idlist" class="md-nav__link">
+    2.4.1 构造待转换基因id的list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#242-id" class="md-nav__link">
+    2.4.2 对差异表达矩阵的基因id更新
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 差异基因可视化
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 差异基因可视化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 差异表达倍数选取
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 差异表达基因标记
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 差异表达基因可视化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 差异表达热图
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 差异表达热图">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-counts" class="md-nav__link">
+    4.2 提取差异表达基因的原始counts矩阵
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    4.3 可视化
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 可视化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#431" class="md-nav__link">
+    4.3.1 数据准备
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#432" class="md-nav__link">
+    4.3.2 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#433" class="md-nav__link">
+    4.3.3 热图
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+  
+  
+
+
+<h1 id="rna-seq-deg">RNA-seq分析： 差异表达基因(DEG)分析</h1>
+<p>对于差异表达基因分析，目的是找出上面的矩阵里可能实验组跟对照组有差别的基因，有的基因在实验组中表达上调，也有可能下调，这部分基因就被我们称为差异表达基因（differential expression gene），而对于差异表达基因的计算，并不是简单的求平均值，然后比较实验组跟对照组平均值的大小，而是有一系列复杂的统计学计算在里面，但生物信息学的发展也有几十年了，研究人员已经把这些复杂的统计学封装成了函数，人们只需要调用这些函数即可。这里我们介绍的是DESeq2，一个引用突破几万的R包</p>
+<h2 id="1">1. 差异表达基因提取</h2>
+<h3 id="11">1.1 数据准备</h3>
+<p>我们在上游的分析中得到了一个counts.txt，这个就是我们的基因表达矩阵，当然，你从其他任何地方得到的基因表达矩阵也可以用来进行差异表达分析~</p>
+<p><strong>NEGF_counts.csv</strong></p>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">NEGF1</th>
+<th align="right">NEGF1yuan</th>
+<th align="right">NEGF2yuan</th>
+<th align="right">NEGF3</th>
+<th align="right">NEGF3yuan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">Geneid</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="right">ENSG00000223972</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td align="right">ENSG00000227232</td>
+<td align="right">82</td>
+<td align="right">63</td>
+<td align="right">80</td>
+<td align="right">79</td>
+<td align="right">63</td>
+</tr>
+<tr>
+<td align="right">ENSG00000278267</td>
+<td align="right">11</td>
+<td align="right">2</td>
+<td align="right">10</td>
+<td align="right">5</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td align="right">ENSG00000243485</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NEGF_meta.csv</strong></p>
+<p>我们还需要一个样本性状矩阵，来区分样本究竟是实验组还是对照组</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NEGF1</td>
+<td>treated</td>
+</tr>
+<tr>
+<td>NEGF1yuan</td>
+<td>control</td>
+</tr>
+<tr>
+<td>NEGF2yuan</td>
+<td>control</td>
+</tr>
+<tr>
+<td>NEGF3</td>
+<td>treated</td>
+</tr>
+<tr>
+<td>NEGF3yuan</td>
+<td>control</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-deseq2">1.2 加载DESeq2</h3>
+<p>我们在R语言的环境中，输入下面一行代码</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nf">library</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;DESeq2&quot;</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div>
+<h3 id="13">1.3 导入数据</h3>
+<p>还是在R语言的环境下，我们使用read.csv函数导入table</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">countData</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&#39;NEGF_counts.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">metaData</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&#39;NEGF_meta.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>1.DEseq2要求输入数据是由整数组成的矩阵。</p>
+<p>2.DESeq2要求矩阵是没有标准化的。</p>
+<h3 id="14">1.4 差异表达分析</h3>
+<p>在这一步，我们直接输入以下代码，计算差异表达矩阵，我们将结果存在dds对象中</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">dds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">DESeqDataSetFromMatrix</span><span class="p">(</span><span class="n">countData</span><span class="o">=</span><span class="n">countData</span><span class="p">,</span><span class="w"> </span>
+<span class="linenos" data-linenos="2 "></span><span class="w">                              </span><span class="n">colData</span><span class="o">=</span><span class="n">metaData</span><span class="p">,</span><span class="w"> </span>
+<span class="linenos" data-linenos="3 "></span><span class="w">                              </span><span class="n">design</span><span class="o">=~</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">tidy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">dds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">DESeq</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>表达矩阵</strong> 即上述代码中的countData，就是我们前面通过read count计算后并融合生成的矩阵，行为各个基因，列为各个样品，中间为计算reads或者fragment得到的整数。我们后面要用的是这个文件（mouse_all_count.txt）</p>
+<p><strong>样品信息矩阵</strong>即上述代码中的colData，它的类型是一个dataframe（数据框），第一列是样品名称，第二列是样品的处理情况（对照还是处理等），即condition，condition的类型是一个factor。这些信息可以从mouse_all_count.txt中导出，也可以自己单独建立。</p>
+<p><strong>差异比较矩阵</strong> 即上述代码中的design。 差异比较矩阵就是告诉差异分析函数是要从要分析哪些变量间的差异，简单说就是说明哪些是对照哪些是处理。</p>
+<h3 id="15">1.5 提取差异表达分析结果</h3>
+<p>由于dds对象并不是结果矩阵，它是DESeq2的一个数据结构，我们需要从中取出我们的差异表达分析结果，可以通过以下代码进行，结果矩阵被存放到<strong>NEGF_result1.csv</strong></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">results</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">res</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">res</span><span class="o">$</span><span class="n">padj</span><span class="p">),]</span>
+<span class="linenos" data-linenos="3 "></span><span class="nf">write.csv</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="s">&#39;NEGF_result1.csv&#39;</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">baseMean</th>
+<th align="right">log2FoldChange</th>
+<th align="right">lfcSE</th>
+<th align="right">stat</th>
+<th align="right">pvalue</th>
+<th align="right">padj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">ENSG00000117318</td>
+<td align="right">5442.355360</td>
+<td align="right">-5.710849</td>
+<td align="right">0.145082</td>
+<td align="right">-39.362892</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+</tr>
+<tr>
+<td align="right">ENSG00000265972</td>
+<td align="right">3147.115496</td>
+<td align="right">4.041551</td>
+<td align="right">0.103068</td>
+<td align="right">39.212444</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+</tr>
+<tr>
+<td align="right">ENSG00000196611</td>
+<td align="right">4344.077177</td>
+<td align="right">4.476829</td>
+<td align="right">0.108971</td>
+<td align="right">41.082873</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+</tr>
+<tr>
+<td align="right">ENSG00000125968</td>
+<td align="right">5526.691818</td>
+<td align="right">-5.280627</td>
+<td align="right">0.112286</td>
+<td align="right">-47.028177</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+</tr>
+<tr>
+<td align="right">ENSG00000124212</td>
+<td align="right">4187.607799</td>
+<td align="right">3.441545</td>
+<td align="right">0.092530</td>
+<td align="right">37.193624</td>
+<td align="right">8.651991e-303</td>
+<td align="right">3.367009e-299</td>
+</tr>
+</tbody>
+</table>
+<p>baseMean：（basemean_A+basemean_B）/2</p>
+<p>log2FoldChange：差异表达倍数，实验组相对对照组而言，争执代表表达上调，负值代表表达下调</p>
+<p>lfcSE：标准误计算</p>
+<p>stat：统计学量</p>
+<p>pvalue：假设检验，一般认为，p&lt;0.05，这个基因的上下调可信</p>
+<p>padj：对pvalue进行了一个多重假设检验</p>
+<h2 id="2-id">2. 基因id转换</h2>
+<p>从这一步开始，就全是Python相关的分析了，R语言在差异表达分析上的应用仅仅是计算差异表达矩阵</p>
+<h3 id="21">2.1 导入包</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos" data-linenos="2 "></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos" data-linenos="3 "></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos" data-linenos="4 "></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="linenos" data-linenos="5 "></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos" data-linenos="6 "></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="linenos" data-linenos="7 "></span>
+<span class="linenos" data-linenos="8 "></span><span class="kn">import</span> <span class="nn">mygene</span>
+<span class="linenos" data-linenos="9 "></span><span class="n">mg</span> <span class="o">=</span> <span class="n">mygene</span><span class="o">.</span><span class="n">MyGeneInfo</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="22">2.2 导入数据</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">data1</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;NEGF_result1.csv&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">data1</span><span class="o">=</span><span class="n">data1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">data1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="23-id">2.3 基因id查询</h3>
+<p>在这里，我们使用了mygene这个包作为基因查询的方法，这里简单讲一下每一个参数的含义</p>
+<p>qterms：待查询的基因list</p>
+<p>scopes：我们查询的基因list是什么格式的，比如"entrezgene", "entrezgene,symbol"，可以通过list的形式判断多种形式，如，["ensemblgene", "symbol"]。更多可在官网查询：http://mygene.info/doc/query_service.html#available_fields</p>
+<p>fields：我们要转换的目标格式是什么格式的</p>
+<p>species：物种名</p>
+<p>returnall：返回查询的全部结果</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">data1</span><span class="o">=</span><span class="n">data1</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="c1">#去重</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">o</span><span class="o">=</span><span class="n">mg</span><span class="o">.</span><span class="n">querymany</span><span class="p">(</span><span class="n">qterms</span><span class="o">=</span><span class="n">data1</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">scopes</span><span class="o">=</span><span class="s1">&#39;ensembl.gene&#39;</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="s1">&#39;symbol&#39;</span><span class="p">,</span> <span class="n">species</span><span class="o">=</span><span class="s1">&#39;human&#39;</span><span class="p">,</span><span class="n">returnall</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>输出结果</p>
+<p>querying 1-1000...done. </p>
+<p>querying 1001-2000...done. </p>
+<p>querying 2001-3000...done. </p>
+<p>……</p>
+<p>Finished. 9 input query terms found no hit: ['ENSG00000168078', 'ENSG00000235245', 'ENSG00000287686', 'ENSG00000189144', 'ENSG00000277203', ……]</p>
+<h3 id="24-id">2.4 基因id转换</h3>
+<p>因为我们查询得到的list是可能会有重复，也有可能有的没查到，比如上面就有9个没查到，但我们肯定不能因为没查到就不进行基因id转换了，我们可以保留这些基因id不变，我们可以通过以下方法完成id转换的过程</p>
+<h4 id="241-idlist">2.4.1 构造待转换基因id的list</h4>
+<p>我们从查询结果中提取，并去重与忽略未查询</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">xl</span><span class="o">=</span><span class="p">[]</span><span class="c1">#目标list</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">out</span><span class="o">=</span><span class="n">o</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">]</span><span class="c1">#查询结果</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">dup</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">o</span><span class="p">[</span><span class="s1">&#39;dup&#39;</span><span class="p">]]</span><span class="c1">#提取查询结果中的重复项</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">dup1</span><span class="o">=</span><span class="p">{}</span><span class="c1">#重复项存储字典，思路，如果出现了重复项就扔进字典里，第二次出现的时候就判定字典里是否出现过，出现过就认为是重复项，跳过不进行转换</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="k">if</span> <span class="s1">&#39;notfound&#39;</span> <span class="ow">in</span> <span class="n">i</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span><span class="c1">#未查询到，保留原始id</span>
+<span class="linenos" data-linenos=" 7 "></span>        <span class="n">xl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="k">elif</span> <span class="s1">&#39;symbol&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">i</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span><span class="c1">#未查询到，保留原始id</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="n">xl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="k">elif</span> <span class="n">i</span><span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">dup</span><span class="p">:</span><span class="c1">#查到重复项</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">dup1</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span><span class="c1">#出现过就去重</span>
+<span class="linenos" data-linenos="12 "></span>            <span class="k">continue</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="k">else</span><span class="p">:</span><span class="c1">#没出现过就保留</span>
+<span class="linenos" data-linenos="14 "></span>            <span class="n">xl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;symbol&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos="15 "></span>            <span class="n">dup1</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">]]</span><span class="o">=</span><span class="mi">1</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="k">else</span><span class="p">:</span><span class="c1">#正常转换</span>
+<span class="linenos" data-linenos="17 "></span>        <span class="n">xl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;symbol&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos="18 "></span><span class="nb">len</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="242-id">2.4.2 对差异表达矩阵的基因id更新</h4>
+<p>可以看到，index都变成新的了</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">data1</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">xl</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">data1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">data1</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;NEGF_data1.csv&#39;</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">baseMean</th>
+<th align="right">log2FoldChange</th>
+<th align="right">lfcSE</th>
+<th align="right">stat</th>
+<th align="right">pvalue</th>
+<th align="right">padj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">ID3</td>
+<td align="right">5442.355360</td>
+<td align="right">-5.710849</td>
+<td align="right">0.145082</td>
+<td align="right">-39.362892</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+</tr>
+<tr>
+<td align="right">TXNIP</td>
+<td align="right">3147.115496</td>
+<td align="right">4.041551</td>
+<td align="right">0.103068</td>
+<td align="right">39.212444</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+</tr>
+<tr>
+<td align="right">MMP1</td>
+<td align="right">4344.077177</td>
+<td align="right">4.476829</td>
+<td align="right">0.108971</td>
+<td align="right">41.082873</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+</tr>
+<tr>
+<td align="right">ID1</td>
+<td align="right">5526.691818</td>
+<td align="right">-5.280627</td>
+<td align="right">0.112286</td>
+<td align="right">-47.028177</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+</tr>
+<tr>
+<td align="right">PTGIS</td>
+<td align="right">4187.607799</td>
+<td align="right">3.441545</td>
+<td align="right">0.092530</td>
+<td align="right">37.193624</td>
+<td align="right">8.651991e-303</td>
+<td align="right">3.367009e-299</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 差异基因可视化</h2>
+<p>我们在前面的分析中得到了差异表达基因的计算结果，但是现在出现一个新的问题，那就是具体哪些基因才是我们感兴趣的差异表达基因？我们该用什么方法确定呢？</p>
+<p>首先，我们观察前面的res发现<strong>log2FoldChange</strong>这一列，这一列就是代表实验组相对对照组而言，基因表达水平的倍数变化，一般来说，我们会通过直方图的方式，来确定合适的表达倍数阈值。</p>
+<h3 id="31">3.1 差异表达倍数选取</h3>
+<p>我们通过一行简单的代码，观察表达倍数的分布</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">#绘制直方图</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>输出结果如图，从图中我们发现，2或许是一个不错的阈值，也就是说，当实验组基因的表达是对照组的两倍的时候，我们认为这是表达上调的，下调同理。</p>
+<p><img alt="untitled" src="https://raw.githubusercontent.com/Starlitnightly/bioinformatic_galaxy/master/img/untitled.png" /></p>
+<h3 id="32">3.2 差异表达基因标记</h3>
+<p>在前面的分析中，我们确定了log2FoldChange的阈值为2，那么我们就将表达变化大于2的基因全部标记上up跟down，注意，这里还有一个标准，就是padj&lt;0.05。</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">data1</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">data1</span><span class="o">.</span><span class="n">log2FoldChange</span><span class="o">&gt;</span> <span class="mi">2</span> <span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">padj</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">),</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;up&#39;</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">data1</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">data1</span><span class="o">.</span><span class="n">log2FoldChange</span><span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span> <span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">padj</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">),</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;down&#39;</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;padj&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">data1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<p>观察数据的输出，我们发现，所有的基因都被标记上了类别</p>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">baseMean</th>
+<th align="right">log2FoldChange</th>
+<th align="right">lfcSE</th>
+<th align="right">stat</th>
+<th align="right">pvalue</th>
+<th align="right">padj</th>
+<th align="right">sig</th>
+<th>log(padj)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">ID3</td>
+<td align="right">5442.355360</td>
+<td align="right">-5.710849</td>
+<td align="right">0.145082</td>
+<td align="right">-39.362892</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+<td align="right">down</td>
+<td>inf</td>
+</tr>
+<tr>
+<td align="right">TXNIP</td>
+<td align="right">3147.115496</td>
+<td align="right">4.041551</td>
+<td align="right">0.103068</td>
+<td align="right">39.212444</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+<td align="right">up</td>
+<td>inf</td>
+</tr>
+<tr>
+<td align="right">MMP1</td>
+<td align="right">4344.077177</td>
+<td align="right">4.476829</td>
+<td align="right">0.108971</td>
+<td align="right">41.082873</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+<td align="right">up</td>
+<td>inf</td>
+</tr>
+<tr>
+<td align="right">ID1</td>
+<td align="right">5526.691818</td>
+<td align="right">-5.280627</td>
+<td align="right">0.112286</td>
+<td align="right">-47.028177</td>
+<td align="right">0.000000e+00</td>
+<td align="right">0.000000e+00</td>
+<td align="right">down</td>
+<td>inf</td>
+</tr>
+<tr>
+<td align="right">PTGIS</td>
+<td align="right">4187.607799</td>
+<td align="right">3.441545</td>
+<td align="right">0.092530</td>
+<td align="right">37.193624</td>
+<td align="right">8.651991e-303</td>
+<td align="right">3.367009e-299</td>
+<td align="right">up</td>
+<td>298.472756</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33">3.3 差异表达基因可视化</h3>
+<p>我们现在已经把差异表达的基因标记完成了，下一步，就是看看差异表达基因的分布了。在这里，我们会用一种叫火山图的方式展示数据，方法如下</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">#定义字体</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">font1</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="s1">&#39;font&#39;</span><span class="p">:</span><span class="s1">&#39;Arial&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="s1">&#39;size&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1">#定义图片大小</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">pp</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1">#用ax控制图片</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">ax</span><span class="o">=</span><span class="n">pp</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span><span class="c1">#绘制表达上调的基因</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data1</span><span class="p">[</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;up&#39;</span><span class="p">][</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">],</span><span class="n">y</span><span class="o">=</span><span class="n">data1</span><span class="p">[</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;up&#39;</span><span class="p">][</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FC8D59&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;up&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="c1">#绘制表达下调的基因</span>
+<span class="linenos" data-linenos="13 "></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data1</span><span class="p">[</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;down&#39;</span><span class="p">][</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">],</span><span class="n">y</span><span class="o">=</span><span class="n">data1</span><span class="p">[</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;down&#39;</span><span class="p">][</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#91CF60&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;down&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span><span class="c1">#绘制非差异表达基因</span>
+<span class="linenos" data-linenos="15 "></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data1</span><span class="p">[</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;normal&#39;</span><span class="p">][</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">],</span><span class="n">y</span><span class="o">=</span><span class="n">data1</span><span class="p">[</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;normal&#39;</span><span class="p">][</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FFFFBF&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="c1">#设置横纵坐标轴字体</span>
+<span class="linenos" data-linenos="17 "></span><span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span><span class="c1">#设置图注</span>
+<span class="linenos" data-linenos="20 "></span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos" data-linenos="21 "></span><span class="c1">#设置横纵标题</span>
+<span class="linenos" data-linenos="22 "></span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;-log(pvalue)&#39;</span><span class="p">,</span><span class="n">font1</span><span class="p">)</span>                   
+<span class="linenos" data-linenos="23 "></span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;log2FC&#39;</span><span class="p">,</span><span class="n">font1</span><span class="p">)</span>
+<span class="linenos" data-linenos="24 "></span><span class="c1">#绘制虚线，padj</span>
+<span class="linenos" data-linenos="25 "></span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">),</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="26 "></span><span class="c1">#绘制虚线，表达上调分割线</span>
+<span class="linenos" data-linenos="27 "></span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="mi">300</span><span class="p">],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="28 "></span><span class="c1">#绘制虚线，表达下调分割线</span>
+<span class="linenos" data-linenos="29 "></span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="mi">300</span><span class="p">],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="30 "></span><span class="c1">#绘制图像标题</span>
+<span class="linenos" data-linenos="31 "></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;NHDF/NHDF+EV&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos" data-linenos="32 "></span><span class="c1">#保存图片</span>
+<span class="linenos" data-linenos="33 "></span><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;NHDF_volcano.png&quot;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span> <span class="o">=</span> <span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="https://raw.githubusercontent.com/Starlitnightly/bioinformatic_galaxy/master/img/NHDF_volcano-1635819681870.png" alt="NHDF_volcano" style="zoom: 33%;" /></p>
+<h2 id="4">4. 差异表达热图</h2>
+<p>我们现在得到了差异表达基因的分布，那么我们还得进一步确定的是，这些差异表达的基因在每个样本中，是否是真的表达上调或表达下调呢，我们这里会借助热图的方式来对差异表达基因进行可视化。</p>
+<h3 id="41">4.1 导入数据</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">#导入差异分析原始结果（未转换基因id）</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;NEGF_result1.csv&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">data2</span><span class="o">=</span><span class="n">data2</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">data2</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">#导入原始counts矩阵</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;NEGF_counts.csv&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="42-counts">4.2 提取差异表达基因的原始counts矩阵</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">filtered</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data2</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">filtered</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">xl</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">filtered</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<p>结果如下</p>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="right">NEGF1</th>
+<th align="right">NEGF1yuan</th>
+<th align="right">NEGF2yuan</th>
+<th align="right">NEGF3</th>
+<th align="right">NEGF3yuan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">ID3</td>
+<td align="right">181</td>
+<td align="right">8455</td>
+<td align="right">10398</td>
+<td align="right">140</td>
+<td align="right">9382</td>
+</tr>
+<tr>
+<td align="right">TXNIP</td>
+<td align="right">6719</td>
+<td align="right">445</td>
+<td align="right">427</td>
+<td align="right">6833</td>
+<td align="right">513</td>
+</tr>
+<tr>
+<td align="right">MMP1</td>
+<td align="right">9307</td>
+<td align="right">551</td>
+<td align="right">426</td>
+<td align="right">9820</td>
+<td align="right">468</td>
+</tr>
+<tr>
+<td align="right">ID1</td>
+<td align="right">207</td>
+<td align="right">9829</td>
+<td align="right">8904</td>
+<td align="right">231</td>
+<td align="right">9901</td>
+</tr>
+<tr>
+<td align="right">PTGIS</td>
+<td align="right">8603</td>
+<td align="right">897</td>
+<td align="right">838</td>
+<td align="right">8684</td>
+<td align="right">942</td>
+</tr>
+</tbody>
+</table>
+<p>提取差异表达基因</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">res</span><span class="o">=</span><span class="n">data2</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">res</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">xl</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;padj&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">res</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">res</span><span class="o">.</span><span class="n">log2FoldChange</span><span class="o">&gt;</span> <span class="mi">2</span> <span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">padj</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">),</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;up&#39;</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">res</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">res</span><span class="o">.</span><span class="n">log2FoldChange</span><span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span> <span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">padj</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">),</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;down&#39;</span>
+<span class="linenos" data-linenos="7 "></span><span class="n">filtered_ids</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;normal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="linenos" data-linenos="8 "></span><span class="nb">len</span><span class="p">(</span><span class="n">filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtered_ids</span><span class="p">])</span>
+<span class="linenos" data-linenos="9 "></span><span class="n">filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtered_ids</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;NEGF_heatmap_data.csv&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="43">4.3 可视化</h3>
+<p>我们得到差异表达基因的原始表达矩阵后，就可以开始对这些基因进行可视化了</p>
+<h4 id="431">4.3.1 数据准备</h4>
+<p>我们需要准备一个meta矩阵跟hetamap_data矩阵，这两个矩阵在前面的分析已经准备好了。</p>
+<h4 id="432">4.3.2 导入数据</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">NEGF_heatmap_data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;NEGF_heatmap_data.csv&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">NEGF_heatmap_data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">NEGF_heatmap_data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="433">4.3.3 热图</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span> <span class="nn">palettable</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="c1">#导入数据</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">meta</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;NEGF_meta.csv&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">meta</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">#设置组别对应的颜色</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">col_c</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="s1">&#39;control&#39;</span><span class="p">:</span><span class="s1">&#39;#FD7C76&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="s1">&#39;treated&#39;</span><span class="p">:</span><span class="s1">&#39;#62CAD1&#39;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="c1">#绘制聚类热图</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">a</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">NEGF_heatmap_data</span><span class="p">,</span> 
+<span class="linenos" data-linenos="12 "></span>               <span class="n">cmap</span><span class="o">=</span><span class="n">palettable</span><span class="o">.</span><span class="n">colorbrewer</span><span class="o">.</span><span class="n">diverging</span><span class="o">.</span><span class="n">RdYlGn_3_r</span><span class="o">.</span><span class="n">mpl_colors</span><span class="p">,</span> 
+<span class="linenos" data-linenos="13 "></span>               <span class="n">standard_scale</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span>
+<span class="linenos" data-linenos="14 "></span>              <span class="n">col_colors</span><span class="o">=</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">col_c</span><span class="p">),</span>
+<span class="linenos" data-linenos="15 "></span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="c1">#设置聚类热图的横纵坐标标签大小</span>
+<span class="linenos" data-linenos="17 "></span><span class="n">a</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span><span class="n">a</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span><span class="c1">#设置聚类热图横坐标的内容</span>
+<span class="linenos" data-linenos="20 "></span><span class="n">a</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;NHDF&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;NHDF+EV&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos="21 "></span><span class="c1">#设置聚类热图横坐标的旋转角度</span>
+<span class="linenos" data-linenos="22 "></span><span class="n">labels</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">get_ticklabels</span><span class="p">()</span>
+<span class="linenos" data-linenos="23 "></span><span class="c1">#a.ax_heatmap.xaxis.set_text([&#39;&#39;,&#39;RAW&#39;,&#39;&#39;,&#39;&#39;,&#39;RAW+EV&#39;,&#39;&#39;])</span>
+<span class="linenos" data-linenos="24 "></span><span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,)</span>
+<span class="linenos" data-linenos="25 "></span><span class="c1">#绘制组别颜色条</span>
+<span class="linenos" data-linenos="26 "></span><span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+<span class="linenos" data-linenos="27 "></span>    <span class="n">a</span><span class="o">.</span><span class="n">ax_col_dendrogram</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col_c</span><span class="p">[</span><span class="n">label</span><span class="p">],</span>
+<span class="linenos" data-linenos="28 "></span>                            <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos="29 "></span><span class="c1">#绘制组别颜色条的legend</span>
+<span class="linenos" data-linenos="30 "></span><span class="n">a</span><span class="o">.</span><span class="n">ax_col_dendrogram</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos" data-linenos="31 "></span><span class="c1">#设置legend的位置</span>
+<span class="linenos" data-linenos="32 "></span><span class="n">a</span><span class="o">.</span><span class="n">cax</span><span class="o">.</span><span class="n">set_position</span><span class="p">([</span><span class="o">-</span><span class="mf">.15</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.03</span><span class="p">,</span> <span class="mf">.45</span><span class="p">])</span>
+<span class="linenos" data-linenos="33 "></span><span class="c1">#设置颜色条的坐标大小</span>
+<span class="linenos" data-linenos="34 "></span><span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">cax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_majorticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos" data-linenos="35 "></span><span class="c1">#保存图片</span>
+<span class="linenos" data-linenos="36 "></span><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;NHDF_heatmap.png&quot;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span> <span class="o">=</span> <span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>结果如图所示</p>
+<p><img src="https://raw.githubusercontent.com/Starlitnightly/bioinformatic_galaxy/master/img/NHDF_heatmap.png" alt="NHDF_heatmap" style="zoom:33%;" /></p>
+
+
+
+
+
+                
+
+  
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fc8c2696.min.js"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

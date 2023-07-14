@@ -1,0 +1,1947 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../MultiOMIC/book-7/">
+      
+      
+        <link rel="next" href="../plot_2/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
+    
+    
+      
+        <title>1-1. 火山图 - Bioinformatic Tutorial (Daxing Research)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7bf56d0a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-header__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bioinformatic Tutorial (Daxing Research)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1-1. 火山图
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bioinformatic Tutorial (Daxing Research)" class="md-nav__button md-logo" aria-label="Bioinformatic Tutorial (Daxing Research)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Bioinformatic Tutorial (Daxing Research)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Starlitnightly/bioinformatic_tutorial" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        写在前面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          基础环境配置
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          基础环境配置
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_1/" class="md-nav__link">
+        配置1. Python环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_2/" class="md-nav__link">
+        配置2. Linux环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONFIG/config_3/" class="md-nav__link">
+        配置3. R语言环境
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          RNA-seq上游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq上游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_1/" class="md-nav__link">
+        1-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQUP/rnasequp_2/" class="md-nav__link">
+        1-2. 上游分析全教程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          RNA-seq下游分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          RNA-seq下游分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_1/" class="md-nav__link">
+        2-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_2/" class="md-nav__link">
+        2-2. 差异表达基因(DEG)分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNASEQ/rnaseq_3/" class="md-nav__link">
+        2-3. 通路富集分析(GSEA)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          单细胞样本对齐
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          单细胞样本对齐
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_1/" class="md-nav__link">
+        3-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_2/" class="md-nav__link">
+        3-2. 数据预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_3/" class="md-nav__link">
+        3-3. 模型准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_4/" class="md-nav__link">
+        3-4. 模型训练
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SCGLUE/scglue_5/" class="md-nav__link">
+        3-5. 对齐细胞
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          MOFA单细胞多组学因子分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          MOFA单细胞多组学因子分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_1/" class="md-nav__link">
+        4-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_2/" class="md-nav__link">
+        4-2. 单细胞样本对齐
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_3/" class="md-nav__link">
+        4-3. scRNA-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_4/" class="md-nav__link">
+        4-4. scATAC-seq数据处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_5/" class="md-nav__link">
+        4-5. MOFA模型构建
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_6/" class="md-nav__link">
+        4-6. MOFA下游分析-R语言环节
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MOFA/mofa_7/" class="md-nav__link">
+        4-7. MOFA下游分析-Python环节
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          TMT蛋白组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          TMT蛋白组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_1/" class="md-nav__link">
+        5-1. 环境配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_2/" class="md-nav__link">
+        5-2. TMT蛋白组学上游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TMT/tmt_3/" class="md-nav__link">
+        5-3. TMT蛋白组学下游分析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          多组学分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          多组学分析
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-1/" class="md-nav__link">
+        6-1. 数据准备
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-2/" class="md-nav__link">
+        6-2. GLUE多组学整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-3/" class="md-nav__link">
+        6-3. 细胞亚群分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-4/" class="md-nav__link">
+        6-4. 差异表达分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-5/" class="md-nav__link">
+        6-5. 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-6/" class="md-nav__link">
+        6-6. 动态调控分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiOMIC/book-7/" class="md-nav__link">
+        6-7. 转录因子网络
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          Python可视化
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Python可视化
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1-1. 火山图
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        1-1. 火山图
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 火山图（散点图）
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 火山图（散点图）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 画图配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 基本火山图绘制
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 基本火山图绘制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131" class="md-nav__link">
+    1.3.1 定义画板
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132" class="md-nav__link">
+    1.3.2 绘制基本的散点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133" class="md-nav__link">
+    1.3.3 为不同类型的散点上色
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#134" class="md-nav__link">
+    1.3.4 绘制辅助线
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#135" class="md-nav__link">
+    1.3.5 绘制刻度与标签
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#136" class="md-nav__link">
+    1.3.6 绘制图注
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#137" class="md-nav__link">
+    1.3.7 坐标轴布局
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#138" class="md-nav__link">
+    1.3.8 绘制文本标注
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 小结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plot_2/" class="md-nav__link">
+        1-2. 箱线图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plot_3/" class="md-nav__link">
+        1-3. 热图(聚类)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          视网膜母细胞瘤分析教程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          视网膜母细胞瘤分析教程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/rb_tutorial/" class="md-nav__link">
+        Base
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_1_preprocess/" class="md-nav__link">
+        教程1: 单细胞上游结果预处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_2_filtered_qc/" class="md-nav__link">
+        教程2: 质量控制与过滤
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_3_glue/" class="md-nav__link">
+        教程3: scRNA-seq与scATAC-seq整合
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_4_scbasset/" class="md-nav__link">
+        教程4: Motif活性分数计算
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_5_analysis1/" class="md-nav__link">
+        教程5: 综合分析1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_6_analysis2/" class="md-nav__link">
+        教程6: 综合分析1-Chromatin activity和Motif score评估
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_7_STER_cell/" class="md-nav__link">
+        教程7: STER cell下游分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_8_kineic_photo/" class="md-nav__link">
+        教程8: 转录动力学分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rb_tutorial/Tutorial_9_cellphonedb/" class="md-nav__link">
+        教程9: 细胞通讯分析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 火山图（散点图）
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 火山图（散点图）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 画图配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 导入数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 基本火山图绘制
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 基本火山图绘制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131" class="md-nav__link">
+    1.3.1 定义画板
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132" class="md-nav__link">
+    1.3.2 绘制基本的散点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133" class="md-nav__link">
+    1.3.3 为不同类型的散点上色
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#134" class="md-nav__link">
+    1.3.4 绘制辅助线
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#135" class="md-nav__link">
+    1.3.5 绘制刻度与标签
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#136" class="md-nav__link">
+    1.3.6 绘制图注
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#137" class="md-nav__link">
+    1.3.7 坐标轴布局
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#138" class="md-nav__link">
+    1.3.8 绘制文本标注
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 小结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+  
+  
+
+
+<h1 id="python">Python数据可视化——生物信息学专栏</h1>
+<h2 id="1">1. 火山图（散点图）</h2>
+<p>首先带来的第一个图是火山图，为什么要叫火山图呢，实际上只是因为形状有一点像火山喷发，所以被人们这么命名，在本期的教程，我将Python中matplotlib的语法贯穿其中，不讲概念，希望大家能有所收获</p>
+<p><strong>数据下载地址：https://github.com/Starlitnightly/bioinformatic_tutorial/tree/main/PLOT/data/data_vol.csv</strong></p>
+<h3 id="11">1.1 画图配置</h3>
+<p>我们首先配置一下jupyter的显示效果，这里用了retina作为显示的图片格式，其次导入了一些常见的包，并提供了一个色卡</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1">#导入包，我有一个习惯就是把导入的包的版本号同时打印出来，这样别人出问题的时候，也能知道到底是哪个版本没对上</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LinearSegmentedColormap</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matplotlib(Ver): &#39;</span><span class="p">,</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos" data-linenos="12 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;seaborn(Ver): &#39;</span><span class="p">,</span><span class="n">sns</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos" data-linenos="15 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;numpy(Ver): &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos" data-linenos="18 "></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pandas(Ver): &#39;</span><span class="p">,</span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="c1">#色卡，这里提供一个我画图常用的色卡，我一般画图的颜色都是从里面选取的</span>
+<span class="linenos" data-linenos="21 "></span><span class="n">sc_color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#7CBB5F&#39;</span><span class="p">,</span><span class="s1">&#39;#368650&#39;</span><span class="p">,</span><span class="s1">&#39;#A499CC&#39;</span><span class="p">,</span><span class="s1">&#39;#5E4D9A&#39;</span><span class="p">,</span><span class="s1">&#39;#78C2ED&#39;</span><span class="p">,</span><span class="s1">&#39;#866017&#39;</span><span class="p">,</span> <span class="s1">&#39;#9F987F&#39;</span><span class="p">,</span><span class="s1">&#39;#E0DFED&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="22 "></span> <span class="s1">&#39;#EF7B77&#39;</span><span class="p">,</span> <span class="s1">&#39;#279AD7&#39;</span><span class="p">,</span><span class="s1">&#39;#F0EEF0&#39;</span><span class="p">,</span> <span class="s1">&#39;#1F577B&#39;</span><span class="p">,</span> <span class="s1">&#39;#A56BA7&#39;</span><span class="p">,</span> <span class="s1">&#39;#E0A7C8&#39;</span><span class="p">,</span> <span class="s1">&#39;#E069A6&#39;</span><span class="p">,</span> <span class="s1">&#39;#941456&#39;</span><span class="p">,</span> <span class="s1">&#39;#FCBC10&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="23 "></span> <span class="s1">&#39;#EAEFC5&#39;</span><span class="p">,</span> <span class="s1">&#39;#01A0A7&#39;</span><span class="p">,</span> <span class="s1">&#39;#75C8CC&#39;</span><span class="p">,</span> <span class="s1">&#39;#F0D7BC&#39;</span><span class="p">,</span> <span class="s1">&#39;#D5B26C&#39;</span><span class="p">,</span> <span class="s1">&#39;#D5DA48&#39;</span><span class="p">,</span> <span class="s1">&#39;#B6B812&#39;</span><span class="p">,</span> <span class="s1">&#39;#9DC3C3&#39;</span><span class="p">,</span> <span class="s1">&#39;#A89C92&#39;</span><span class="p">,</span> <span class="s1">&#39;#FEE00C&#39;</span><span class="p">,</span> <span class="s1">&#39;#FEF2A1&#39;</span><span class="p">]</span>
+<span class="linenos" data-linenos="24 "></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="linenos" data-linenos="25 "></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sc_color</span><span class="p">)):</span>
+<span class="linenos" data-linenos="26 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">sc_color</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="linenos" data-linenos="27 "></span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>matplotlib(Ver):  3.5.1
+<span class="linenos" data-linenos="2 "></span>seaborn(Ver):  0.11.2
+<span class="linenos" data-linenos="3 "></span>numpy(Ver):  1.23.4
+<span class="linenos" data-linenos="4 "></span>pandas(Ver):  1.5.1
+</code></pre></div>
+<p><img alt="png" src="../plot_1.assets/output_1_1.png" /></p>
+<h3 id="12">1.2 导入数据</h3>
+<p>在这里，我们导入了绘制火山图需要的数据，并对数据进行了一些初步的预处理，比如对数化，使其能满足我们的需求。</p>
+<p>我们导入的数据是来自DEseq2包分析的结果。</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">#设置文件路径</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">current_path</span><span class="o">=</span><span class="s1">&#39;/home/xiongyy/analysis/PLOT/&#39;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c1">#使用read_csv导入csv文件</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">current_path</span><span class="o">+</span><span class="s1">&#39;data/data_vol.csv&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">#设置表头,`inplace=True`代表替换原文件</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="c1">#设置index的名字，设不设都行，就是unamed:0看着怪怪的</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;genes&#39;</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1">#计算p-value的对数化，并取负值，取负数是因为我们关心的事p&lt;0.05的部分，所以这部分对数化后是负数，我们再取一个负数就变正数了</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;padj&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos="11 "></span><span class="c1">#我们将｜log2FoldChange｜大于2跟padj小于0.05的基因都标注一下，这部分基因就是我们感兴趣的了</span>
+<span class="linenos" data-linenos="12 "></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+<span class="linenos" data-linenos="13 "></span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">data</span><span class="o">.</span><span class="n">log2FoldChange</span><span class="o">&gt;</span> <span class="mi">2</span> <span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">padj</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">),</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;up&#39;</span>
+<span class="linenos" data-linenos="14 "></span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">data</span><span class="o">.</span><span class="n">log2FoldChange</span><span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span> <span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">padj</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">),</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;down&#39;</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>/home/xiongyy/miniconda3/envs/bio/lib/python3.8/site-packages/pandas/core/arraylike.py:402: RuntimeWarning: divide by zero encountered in log10
+<span class="linenos" data-linenos="2 "></span>  result = getattr(ufunc, method)(*inputs, **kwargs)
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+
+</style>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>baseMean</th>
+      <th>log2FoldChange</th>
+      <th>lfcSE</th>
+      <th>stat</th>
+      <th>pvalue</th>
+      <th>padj</th>
+      <th>log(padj)</th>
+      <th>sig</th>
+    </tr>
+    <tr>
+      <th>genes</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>HSPG2</th>
+      <td>2381.469193</td>
+      <td>4.375009</td>
+      <td>0.100647</td>
+      <td>43.469063</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>inf</td>
+      <td>up</td>
+    </tr>
+    <tr>
+      <th>KIF2C</th>
+      <td>2566.497532</td>
+      <td>-2.668326</td>
+      <td>0.070670</td>
+      <td>-37.757773</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>inf</td>
+      <td>down</td>
+    </tr>
+    <tr>
+      <th>CCN1</th>
+      <td>7205.494206</td>
+      <td>-3.445651</td>
+      <td>0.061146</td>
+      <td>-56.350780</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>inf</td>
+      <td>down</td>
+    </tr>
+    <tr>
+      <th>ATP1B1</th>
+      <td>5993.319741</td>
+      <td>3.305873</td>
+      <td>0.066467</td>
+      <td>49.737038</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>inf</td>
+      <td>up</td>
+    </tr>
+    <tr>
+      <th>STEAP3</th>
+      <td>5283.907094</td>
+      <td>2.597059</td>
+      <td>0.061520</td>
+      <td>42.214808</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>inf</td>
+      <td>up</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<p>观察数据我们发现，有很多<code>inf</code>，inf代表无限的意思，这也很好理解，我们对0取对数就是负无限，那么取反就是正无限。
+一般来说，我们会对log(padj)大于10的，都视作非常非常显著了，所以我们最后画图的时候会稍微卡一下阈值。
+这里需要跟大家解释一下什么叫<code>log2FoldChange</code>，什么叫<code>padj</code>。这是两个很简单，但也很有意思的概念。</p>
+<p>首先是<code>log2FoldChange</code>，我们在生物学分析中，需要衡量一个基因在两个不同的组，通常认为是<code>实验组</code>与<code>对照组</code>的变化，
+如果一个基因在实验组表达要明显升高，那么这个基因可能就是我们感兴趣的基因，我们用以下的计算公式：
+$$
+log2FoldChange= \log_{2}{\frac{Avg(Gene-expression_{实验组})}{ \ {Avg(Gene-expression_{对照组}})}}
+$$
+其中Avg代表平均表达量，那么我们很容易推出，如果log2FoldChange大于1的话，也就是实验组的平均表达是对照组的两倍，大于2就是四倍，以此类推，
+很自然而然的我们就会想到，log2FC可以作为一个阈值来筛选表达升高的基因，跟表达下降的基因。但是，这个筛选一定准确吗？答案是否定的，为什么？
+这里有一个很简单的例子，假如我Gene1在实验组的两个样本的表达分别为1、40；在对照组的两个样本的表达分别为15、15，那么实验组的平均值是20.5，对照组的平均值是15，
+我们能简单地判定Gene1在实验组中表达上调吗？答案当然是否定的。</p>
+<p>于是我们这里引入了统计学检验t-test，利用统计学检验我们进行了一个零假设：我们假设Gene1在实验组跟对照组没有差别，然后对这个假设进行检验，
+假如我们发现，p-value小于0.05，意味着这个零假设成立的可能只有5%。很自然地我们就会想到，实验组跟对照组有差别的可能性为95%。读到这里你可能会问，
+为什么我不直接假设Gene1在实验组跟对照组有差别，事实上这个思路没错，但是不好检验，如果假设没有差别我们就可以把两个数据当一个数据来检验就很好下判断了。
+因此，我们一般把p-value&lt;0.05作为统计学检验的一个标准。</p>
+<p>读到这里，聪明的你发现，我们这里用的是padj，这个跟p-value有什么区别呢？这个叫做多重假设检验。为什么要这么做呢？这是因为我们p-value是存在假阳性的，
+假如我这里有100个基因，假设我们检验后有10个基因是p-value小于0.05的，我们犯错误的数量为10*0.05，大概就只有0.5个基因是有问题的，这个是可以容忍的，
+读到这里你可能会好奇，为什么是0.5个基因，答案很简单，统计学误差，我们设置的阈值是0.05，意味着我这10个基因并不是一定准确的，里面也是有可能出错的。</p>
+<p>但是我如果有10000个基因进行检验呢？我们假设有1000个基因的p-value是小于0.05的，我们判断错的基因的数量为50个，这个数量就比较不能忽视了，所以我们这里引入
+多重假设检验来弥补这个误差，那么意味着我10000个基因里只要50个基因，这50个基因是满足我padj小于0.05的。当然多重假设检验是一种方法，还有Bonferroni校正等。</p>
+<h3 id="13">1.3 基本火山图绘制</h3>
+<h4 id="131">1.3.1 定义画板</h4>
+<p>这个定义画板就很有意思了，在本系列教程中，尽量避免使用你们熟悉的plt，使用ax进行绘制，目的是能最大化自定义图形的内容。</p>
+<p>首先得讲一下<code>fig</code>跟<code>ax</code>分别都是什么:</p>
+<ul>
+<li><code>fig</code>:</li>
+</ul>
+<p>Figure，就是图的外框，也叫画布，可以包括1-无穷个内框Axes</p>
+<ul>
+<li><code>ax</code>:</li>
+</ul>
+<p>Axes，就是图的内框，里面可以画各种图</p>
+<ul>
+<li><code>plt</code>:</li>
+</ul>
+<p>plt就是一整张画布，它甚至不需要这些组件，想添加什么，直接写就写了，但是用plt画图，在修改细节的时候不太友好</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">#定义画板，我们定义了一个3x3大小的子图</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../plot_1.assets/output_5_0.png" width="300" /></p>
+</figure>
+<h4 id="132">1.3.2 绘制基本的散点</h4>
+<p>我们这里使用ax绘制一下整幅散点图</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">#绘制散点图,x轴为log2FC，y轴为-log10(padj)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="3 "></span>            <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">],)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>&lt;matplotlib.collections.PathCollection at 0x7efd73e1caf0&gt;
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../plot_1.assets/output_7_1.png" width="300" /></p>
+</figure>
+<h4 id="133">1.3.3 为不同类型的散点上色</h4>
+<p>我们这里有三种基因，分别是上调基因，下调基因，以及正常基因，我们分别为不同的基因上不同的色</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="c1">#首先绘制正常基因</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;normal&#39;</span><span class="p">][</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 4 "></span>           <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;normal&#39;</span><span class="p">][</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 5 "></span>           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FFFFBF&#39;</span><span class="p">,</span><span class="c1">#颜色</span>
+<span class="linenos" data-linenos=" 6 "></span>           <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span><span class="c1">#透明度</span>
+<span class="linenos" data-linenos=" 7 "></span>           <span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1">#接着绘制上调基因</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;up&#39;</span><span class="p">][</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="10 "></span>           <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;up&#39;</span><span class="p">][</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="11 "></span>           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FC8D59&#39;</span><span class="p">,</span><span class="c1">#选择色卡第15个颜色</span>
+<span class="linenos" data-linenos="12 "></span>           <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span><span class="c1">#透明度</span>
+<span class="linenos" data-linenos="13 "></span>           <span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span><span class="c1">#绘制下调基因</span>
+<span class="linenos" data-linenos="15 "></span><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;down&#39;</span><span class="p">][</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="16 "></span>           <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;down&#39;</span><span class="p">][</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos="17 "></span>           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#91CF60&#39;</span><span class="p">,</span><span class="c1">#颜色</span>
+<span class="linenos" data-linenos="18 "></span>           <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span><span class="c1">#透明度</span>
+<span class="linenos" data-linenos="19 "></span>           <span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>&lt;matplotlib.collections.PathCollection at 0x7efd72c554f0&gt;
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../plot_1.assets/output_9_1.png" width="300" /></p>
+</figure>
+<h4 id="134">1.3.4 绘制辅助线</h4>
+<p>在1.3.3中，我们已经得到火山图基本的样貌了，但这并不是我们最终的目的，我们最终画出来的图应该更好看，于是，我们要为火山图添加一些标注
+我们一共卡了三根阈值线，分别是log2FC&gt;2,log2FC&lt;-2,padj&lt;0.05，我们在图中将这三根线画出来</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span><span class="c1">#辅助线的x值起点与终点</span>
+<span class="linenos" data-linenos=" 2 "></span>        <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">),</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)],</span><span class="c1">#辅助线的y值起点与终点</span>
+<span class="linenos" data-linenos=" 3 "></span>        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="c1">#辅助线的宽度</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="c1">#辅助线类型：虚线</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="c1">#辅助线的颜色</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="p">)</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="mi">300</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+<span class="linenos" data-linenos="10 "></span>        <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="mi">300</span><span class="p">],</span>
+<span class="linenos" data-linenos="14 "></span>        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+<span class="linenos" data-linenos="15 "></span>        <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="16 "></span>        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>[&lt;matplotlib.lines.Line2D at 0x7efd6bf32460&gt;]
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../plot_1.assets/output_11_1.png" width="300" /></p>
+</figure>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>
+</code></pre></div>
+<h4 id="135">1.3.5 绘制刻度与标签</h4>
+<p>在得到火山图的雏形后，我们需要对火山图的一些内容进行说明，比如横坐标与纵坐标的含义，比如我们p-value的对数只需要显示到10</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">#大于10的缩放</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">,</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">#更改y坐标轴内容，使其只显示到10，并且稍微延长一些</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">],</span><span class="c1">#要修改的y坐标轴目标</span>
+<span class="linenos" data-linenos=" 3 "></span>              <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">,</span><span class="s1">&#39;8&#39;</span><span class="p">,</span><span class="s1">&#39;&gt;10&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">],</span><span class="c1">#要修改的y坐标轴内容</span>
+<span class="linenos" data-linenos=" 4 "></span>              <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span>              <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span>
+<span class="linenos" data-linenos=" 6 "></span>           <span class="p">)</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1">#更改x坐标轴的字体</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticks</span><span class="p">()[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="c1">#获取x坐标轴内容</span>
+<span class="linenos" data-linenos="10 "></span>              <span class="n">ax</span><span class="o">.</span><span class="n">get_xticks</span><span class="p">()[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="c1">#更新x坐标轴内容</span>
+<span class="linenos" data-linenos="11 "></span>              <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="linenos" data-linenos="12 "></span>              <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span>
+<span class="linenos" data-linenos="13 "></span>              <span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span><span class="c1">#字体类型定义</span>
+<span class="linenos" data-linenos="15 "></span><span class="n">font1</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="17 "></span>    <span class="s1">&#39;size&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+<span class="linenos" data-linenos="18 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="c1">#设置横标签与纵标签</span>
+<span class="linenos" data-linenos="20 "></span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;-log(pvalue)&#39;</span><span class="p">,</span><span class="n">font1</span><span class="p">)</span>                                    
+<span class="linenos" data-linenos="21 "></span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;log2FC&#39;</span><span class="p">,</span><span class="n">font1</span><span class="p">)</span>
+<span class="linenos" data-linenos="22 "></span><span class="c1">#设置标题</span>
+<span class="linenos" data-linenos="23 "></span><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;DEseq2 Analysis&#39;</span><span class="p">,</span><span class="n">font1</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Text(0.5, 1.0, &#39;DEseq2 Analysis&#39;)
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../plot_1.assets/output_14_1.png" width="300" /></p>
+</figure>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>
+</code></pre></div>
+<h4 id="136">1.3.6 绘制图注</h4>
+<p>虽然我们很清晰图上什么颜色代表什么类型的基因，但是读者并不清楚，所以为了让读者明白我们在干啥，所以这里我们为我们的火山图加上图注</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">#绘制图注</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="c1">#legend标签列表，上面的color即是颜色列表</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;up:</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;up&#39;</span><span class="p">])),</span>
+<span class="linenos" data-linenos=" 4 "></span>          <span class="s1">&#39;down:</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;down&#39;</span><span class="p">]))]</span>  
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">#用label和color列表生成mpatches.Patch对象，它将作为句柄来生成legend</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#FC8D59&#39;</span><span class="p">,</span><span class="s1">&#39;#91CF60&#39;</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">color</span><span class="p">))]</span> 
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">patches</span><span class="p">,</span>
+<span class="linenos" data-linenos="10 "></span>      <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">),</span> 
+<span class="linenos" data-linenos="11 "></span>      <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="linenos" data-linenos="12 "></span>      <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>&lt;matplotlib.legend.Legend at 0x7efd6b3ab880&gt;
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../plot_1.assets/output_16_1.png" width="300" /></p>
+</figure>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>
+</code></pre></div>
+<h4 id="137">1.3.7 坐标轴布局</h4>
+<p>有没有觉得上边跟右边的线很多余呢？坐标轴不够粗呢？所以我们简单调整一下</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="c1">###设置底部坐标轴的粗细</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="c1">####设置左边坐标轴的粗细</span>
+<span class="linenos" data-linenos="7 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="c1">###设置右边坐标轴的粗细</span>
+<span class="linenos" data-linenos="8 "></span><span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="c1">####设置上部坐标轴的粗细</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../plot_1.assets/output_18_0.png" width="300" /></p>
+</figure>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>
+</code></pre></div>
+<h4 id="138">1.3.8 绘制文本标注</h4>
+<p>在火山图中，实际上我们会对其中的一些基因感兴趣，于是希望能在图中可视化出来，但是又担心文字之间存在遮挡。</p>
+<p>所以在这里，我们使用了<code>adjustText</code>包来对文本进行处理</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">adjustText</span> <span class="kn">import</span> <span class="n">adjust_text</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">hub_gene</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;padj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">texts</span><span class="o">=</span><span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;log2FoldChange&#39;</span><span class="p">],</span> 
+<span class="linenos" data-linenos=" 5 "></span>               <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;log(padj)&#39;</span><span class="p">],</span>
+<span class="linenos" data-linenos=" 6 "></span>               <span class="n">i</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 7 "></span>               <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="s1">&#39;bold&#39;</span><span class="p">}</span>
+<span class="linenos" data-linenos=" 8 "></span>               <span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hub_gene</span><span class="p">[:</span><span class="mi">20</span><span class="p">]]</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="n">adjust_text</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span><span class="n">only_move</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;xy&#39;</span><span class="p">},</span><span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">),)</span>
+<span class="linenos" data-linenos="11 "></span><span class="c1"># 保存图片</span>
+<span class="linenos" data-linenos="12 "></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">current_path</span><span class="o">+</span><span class="s2">&quot;figures/fig_volcano.png&quot;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">bbox_inches</span> <span class="o">=</span> <span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="Image title" src="../plot_1.assets/output_20_0.png" width="300" /></p>
+</figure>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>
+</code></pre></div>
+<h3 id="14">1.4 小结</h3>
+<p>到这里，你已经掌握火山图的基本绘制原理，以及火山图的原理了，我们下期教程再见</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>
+</code></pre></div>
+
+
+
+
+
+                
+
+  
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fc8c2696.min.js"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
