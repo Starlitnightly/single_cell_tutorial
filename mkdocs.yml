@@ -12,7 +12,7 @@ nav:
     - 1-4. 分析框架与工具: Introduction/1-4.ipynb
     - 1-5. 环境配置: error.md
 - 预处理和可视化:
-    - 2-1. 质量控制: error.md
+    - 2-1. 质量控制: Preprocessing and visualization/2-1.ipynb
     - 2-2. 标准化: error.md
     - 2-3. 特征选择: error.md
     - 2-4. 降维: error.md
