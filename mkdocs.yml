@@ -14,11 +14,11 @@ nav:
 - 预处理和可视化:
     - 2-1. 质量控制: preprocess/2-1.ipynb
     - 2-2. 标准化: error.md
-    - 2-3. 特征选择: error.md
-    - 2-4. 降维: error.md
+    - 2-3. 特征选择: preprocess/2-3.ipynb
+    - 2-4. 降维: preprocess/2-4.ipynb
     - 2-5. 批次效应校正: error.md
 - 细胞类型识别:
-    - 3-1. 聚类: error.md
+    - 3-1. 聚类: Identifying cellular structure/3-1.ipynb
     - 3-2. 手动注释: error.md
     - 3-3. 自动注释(一): error.md
     - 3-4. 自动注释(二): error.md
