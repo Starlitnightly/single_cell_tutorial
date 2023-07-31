@@ -19,7 +19,7 @@ nav:
     - 2-5. 批次效应校正: error.md
 - 细胞类型识别:
     - 3-1. 聚类: Identifying cellular structure/3-1.ipynb
-    - 3-2. 手动注释: error.md
+    - 3-2. 手动注释: Identifying cellular structure/3-2.ipynb
     - 3-3. 自动注释(一): error.md
     - 3-4. 自动注释(二): error.md
     - 3-5. 迁移注释: error.md
