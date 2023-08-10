@@ -16,7 +16,7 @@ nav:
     - 2-2. 标准化: preprocess/2-2.ipynb
     - 2-3. 特征选择: preprocess/2-3.ipynb
     - 2-4. 降维: preprocess/2-4.ipynb
-    - 2-5. 批次效应校正: error.md
+    - 2-5. 批次效应校正: preprocess/2-5.ipynb
 - 细胞类型识别:
     - 3-1. 聚类: Identifying cellular structure/3-1.ipynb
     - 3-2. 手动注释: Identifying cellular structure/3-2.ipynb
