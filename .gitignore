@@ -4,3 +4,4 @@ data
 *.h5ad
 *.loom
 *.txt
+*temp*
