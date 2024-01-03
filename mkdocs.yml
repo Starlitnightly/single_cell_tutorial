@@ -24,7 +24,7 @@ nav:
     - 3-4. 自动注释(二): Identifying cellular structure/3-4.ipynb
     - 3-5. 迁移注释: Identifying cellular structure/3-5.ipynb
 - 细胞状态分析:
-    - 4-1. 差异表达分析: error.md
+    - 4-1. 差异表达分析: stages/4-1.ipynb
     - 4.2. 主成分与模块分解: error.md
     - 4.3. 基因集与通路富集分析: error.md
     - 4.4. 扰动建模(一): error.md
@@ -38,7 +38,7 @@ nav:
     - 6-1. 基因调控网络GRN: error.md
     - 6-2. 细胞间通讯: error.md
 - 其他:
-    - 7-1. NCBI数据公开: error.md
+    - 7-1. NCBI数据公开: others/7-1.ipynb
 
 
 
