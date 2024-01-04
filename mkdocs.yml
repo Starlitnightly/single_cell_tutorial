@@ -25,7 +25,7 @@ nav:
     - 3-5. 迁移注释: Identifying cellular structure/3-5.ipynb
 - 细胞状态分析:
     - 4-1. 差异表达分析: stages/4-1.ipynb
-    - 4.2. 主成分与模块分解: error.md
+    - 4.2. 细胞组成分析: stages/4-2.ipynb
     - 4.3. 基因集与通路富集分析: error.md
     - 4.4. 扰动建模(一): error.md
     - 4.5. 扰动建模(二): error.md
