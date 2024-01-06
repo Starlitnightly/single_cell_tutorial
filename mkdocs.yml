@@ -26,9 +26,9 @@ nav:
 - 细胞状态分析:
     - 4-1. 差异表达分析: stages/4-1.ipynb
     - 4.2. 细胞组成分析: stages/4-2.ipynb
-    - 4.3. 基因集与通路富集分析: error.md
-    - 4.4. 扰动建模(一): error.md
-    - 4.5. 扰动建模(二): error.md
+    - 4.3. 细胞扰动分析: stages/4-3.ipynb
+    - 4.4. 基因集与通路富集分析: error.md
+    - 4.5. 细胞沉默分析: error.md
 - 轨迹推断:
     - 5-1. 拟时序推测(一): error.md
     - 5-2. 拟时序推测(二): error.md
