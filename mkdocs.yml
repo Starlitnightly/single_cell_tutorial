@@ -30,10 +30,9 @@ nav:
     - 4.4. 基因集与通路富集分析: error.md
     - 4.5. 细胞沉默分析: error.md
 - 轨迹推断:
-    - 5-1. 拟时序推测(一): error.md
-    - 5-2. 拟时序推测(二): error.md
-    - 5-3. RNA速率: error.md
-    - 5-4. 谱系分化通路: error.md
+    - 5-1. 拟时序计算: trajectory/5-1.ipynb
+    - 5-2. RNA速率模型: trajectory/5-2.ipynb
+    - 5-3. 细胞命运推断: error.md
 - 调控建模:
     - 6-1. 基因调控网络GRN: error.md
     - 6-2. 细胞间通讯: error.md
